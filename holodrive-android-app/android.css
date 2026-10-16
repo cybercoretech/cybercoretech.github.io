@@ -13,3 +13,11 @@
 .install-command>code{display:block;min-width:0;max-width:100%;padding:12px;border:1px solid #00e5ff44;background:#00e5ff0a;color:var(--cyan);font:clamp(11px,1.1vw,13px)/1.55 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
 .install-command small{color:var(--muted);font:10px/1.6 var(--mono)}
 @media(max-width:700px){.install-panel{grid-template-columns:minmax(0,1fr);gap:18px;padding:18px}.install-command{padding:14px}}
+
+.command-line{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:start;gap:10px;min-width:0;padding:10px;border:1px solid #00e5ff44;background:#00e5ff0a}
+.command-line code{display:block;min-width:0;max-width:100%;padding:0!important;border:0!important;background:none!important;color:var(--cyan)!important;font:11px/1.6 var(--mono)!important;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
+.copy-command{align-self:start;padding:7px 9px;border:1px solid #00e5ff66;color:var(--cyan);background:#00e5ff0c;font:9px var(--mono);letter-spacing:.06em;cursor:pointer}
+.copy-command:hover,.copy-command:focus-visible{border-color:var(--cyan);background:#00e5ff20;outline:none}
+.copy-command[data-state="copied"]{color:var(--bg);background:var(--cyan)}
+.copy-command[data-state="failed"]{border-color:var(--pink);color:var(--pink)}
+@media(max-width:420px){.command-line{gap:6px;padding:8px}.copy-command{padding:6px;font-size:8px}}
