@@ -1,6 +1,6 @@
 # Cybercore Tech Pages
 
-The public Cybercore Tech organization landing surface for `cybercore-tech.github.io`.
+The public Cybercore Tech organization landing surface for `cybercoretech.github.io`.
 
 This site is separate from the existing `cybercoretech.net` project. It presents the Cybercore Tech identity, five core repositories, the 81-theme CYBERGRID matrix, the Theme Studio entry point, and open-system acknowledgements.
 
@@ -12,10 +12,10 @@ imports and exports for local Cybercore applications.
 
 Cybercore 0.8.0 publishes the `cybercore-theme` quality and pack-checking CLI.
 The public Pages site serves `install.sh` at
-`https://cybercore-tech.github.io/cybercore/install.sh`; the quick install is:
+`https://cybercoretech.github.io/cybercore/install.sh`; the quick install is:
 
 ```sh
-curl -fsSL https://cybercore-tech.github.io/cybercore/install.sh | sh
+curl -fsSL https://cybercoretech.github.io/cybercore/install.sh | sh
 ```
 
 The script requires Rust/Cargo and installs only the CLI binary. Rust projects
@@ -28,7 +28,7 @@ equivalent direct Cargo command is `cargo install cybercore --locked --bin cyber
 `data/contact.json` is the single source of truth for Cybercore Tech contact details: email, security address, signal channels, support links and the copyright line. `kit/contact.js` renders it as a `<cybercore-contact>` element that any Cybercore page can use:
 
 ```html
-<script type="module" src="https://cybercore-tech.github.io/kit/contact.js"></script>
+<script type="module" src="https://cybercoretech.github.io/kit/contact.js"></script>
 
 <cybercore-contact></cybercore-contact>                     <!-- full block -->
 <cybercore-contact variant="compact"></cybercore-contact>   <!-- one line -->

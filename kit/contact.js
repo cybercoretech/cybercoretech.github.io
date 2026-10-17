@@ -10,7 +10,7 @@
 // block re-themes live whenever the page swaps palettes.
 //
 // Usage:
-//   <script type="module" src="https://cybercore-tech.github.io/kit/contact.js"></script>
+//   <script type="module" src="https://cybercoretech.github.io/kit/contact.js"></script>
 //   <cybercore-contact></cybercore-contact>                    full footer block
 //   <cybercore-contact variant="compact"></cybercore-contact>  one-line strip
 //   <cybercore-contact repo="argus"></cybercore-contact>       adds that repo's issue link
@@ -270,7 +270,7 @@ class CybercoreContact extends HTMLElement {
 
   repoIssues() {
     const repo = this.getAttribute('repo');
-    return repo && /^[A-Za-z0-9._-]+$/.test(repo) ? `https://github.com/cybercore-tech/${repo}/issues` : null;
+    return repo && /^[A-Za-z0-9._-]+$/.test(repo) ? `https://github.com/cybercoretech/${repo}/issues` : null;
   }
 
   full(d) {

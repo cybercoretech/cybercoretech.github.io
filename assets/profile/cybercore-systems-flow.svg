@@ -84,7 +84,7 @@
   </g>
 
   <!-- linked nodes -->
-  <a href="https://github.com/cybercore-tech/cybercore">
+  <a href="https://github.com/cybercoretech/cybercore">
     <g transform="translate(94 176)">
       <rect width="330" height="126" rx="16" fill="#081723" stroke="#12e5de" stroke-width="2"/>
       <rect width="7" height="126" rx="3" fill="#12e5de"/>
@@ -95,7 +95,7 @@
     </g>
   </a>
 
-  <a href="https://github.com/cybercore-tech/cyberdeck">
+  <a href="https://github.com/cybercoretech/cyberdeck">
     <g transform="translate(94 580)">
       <rect width="330" height="126" rx="16" fill="#1b1022" stroke="#ff2158" stroke-width="2"/>
       <rect width="7" height="126" rx="3" fill="#ff2158"/>
@@ -106,7 +106,7 @@
     </g>
   </a>
 
-  <a href="https://github.com/cybercore-tech/cybermeta">
+  <a href="https://github.com/cybercoretech/cybermeta">
     <g transform="translate(1176 176)">
       <rect width="330" height="126" rx="16" fill="#101b16" stroke="#b6ff3c" stroke-width="2"/>
       <rect x="323" width="7" height="126" rx="3" fill="#b6ff3c"/>
@@ -117,7 +117,7 @@
     </g>
   </a>
 
-  <a href="https://github.com/cybercore-tech/cyberplug">
+  <a href="https://github.com/cybercoretech/cyberplug">
     <g transform="translate(1176 580)">
       <rect width="330" height="126" rx="16" fill="#21160e" stroke="#ff6a1a" stroke-width="2"/>
       <rect x="323" width="7" height="126" rx="3" fill="#ff6a1a"/>
@@ -128,7 +128,7 @@
     </g>
   </a>
 
-  <a href="https://github.com/cybercore-tech/cyberterm">
+  <a href="https://github.com/cybercoretech/cyberterm">
     <g transform="translate(635 690)">
       <rect width="330" height="108" rx="16" fill="#1b1027" stroke="#b44dff" stroke-width="2"/>
       <rect x="161" y="102" width="8" height="6" rx="3" fill="#b44dff"/>
