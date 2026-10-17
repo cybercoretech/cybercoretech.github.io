@@ -12,10 +12,10 @@ imports and exports for local Cybercore applications.
 
 Cybercore 0.8.0 publishes the `cybercore-theme` quality and pack-checking CLI.
 The public Pages site serves `install.sh` at
-`https://cybercoretech.github.io/cybercore/install.sh`; the quick install is:
+`https://cybercoretech.github.io/install.sh`; the quick install is:
 
 ```sh
-curl -fsSL https://cybercoretech.github.io/cybercore/install.sh | sh
+curl -fsSL https://cybercoretech.github.io/install.sh | sh
 ```
 
 The script requires Rust/Cargo and installs only the CLI binary. Rust projects
