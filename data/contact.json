@@ -53,6 +53,13 @@
       "label": "Reddit",
       "handle": "cybercore_sh",
       "url": "https://www.reddit.com/user/cybercore_sh/"
+    },
+    {
+      "id": "codeberg",
+      "glyph": "CB",
+      "label": "Codeberg",
+      "handle": "darkstardevx",
+      "url": "https://codeberg.org/darkstardevx"
     }
   ],
   "support": [

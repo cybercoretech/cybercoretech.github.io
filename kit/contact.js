@@ -124,14 +124,17 @@ const STYLE = `
   .sec .mail:hover { color: var(--orange, #ff9000); text-shadow: 0 0 14px color-mix(in srgb, var(--orange, #ff9000) 60%, transparent); }
   .sec .tag { color: var(--orange, #ff9000); }
 
-  ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
-  .chan { display: flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; transition: transform .2s, color .2s; }
-  .chan:hover { color: var(--col); transform: translateX(4px); }
-  .glyph { display: grid; place-items: center; flex: none; width: 26px; height: 26px; border: 1px solid color-mix(in srgb, var(--col) 55%, transparent); border-radius: 50%; color: var(--col); background: color-mix(in srgb, var(--col) 10%, transparent); font: 700 9px var(--cc-mono); letter-spacing: 0; }
-  .handle { color: var(--cc-muted); font-size: 9px; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  .channel-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 10px; }
+  .channel-list li { min-width: 0; }
+  .chan { display: flex; align-items: center; min-width: 0; gap: 7px; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; transition: transform .2s, color .2s; }
+  .chan:hover { color: var(--col); transform: translateX(3px); }
+  .glyph { display: grid; place-items: center; flex: none; width: 24px; height: 24px; border: 1px solid color-mix(in srgb, var(--col) 55%, transparent); border-radius: 50%; color: var(--col); background: color-mix(in srgb, var(--col) 10%, transparent); font: 700 9px var(--cc-mono); letter-spacing: 0; }
+  .handle { min-width: 0; overflow: hidden; color: var(--cc-muted); font-size: 8px; text-overflow: ellipsis; white-space: nowrap; }
   .arrow { color: var(--col); }
 
-  .coffee { display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px 10px 10px; border: 1px solid var(--acid, #39ff33); color: var(--acid, #39ff33); background: color-mix(in srgb, var(--acid, #39ff33) 8%, transparent); font: 700 11px var(--cc-mono); letter-spacing: .1em; text-transform: uppercase; transition: transform .2s, box-shadow .2s, background .2s; }
+  .support-list { display: grid; justify-items: start; gap: 9px; }
+  .coffee { display: inline-flex; align-items: center; width: min(100%, 220px); min-height: 42px; gap: 10px; padding: 7px 12px 7px 9px; border: 1px solid var(--acid, #39ff33); color: var(--acid, #39ff33); background: color-mix(in srgb, var(--acid, #39ff33) 8%, transparent); font: 700 10px var(--cc-mono); letter-spacing: .08em; text-transform: uppercase; transition: transform .2s, box-shadow .2s, background .2s; }
   .coffee:hover { transform: translateY(-2px); background: color-mix(in srgb, var(--acid, #39ff33) 16%, transparent); box-shadow: 0 0 22px color-mix(in srgb, var(--acid, #39ff33) 30%, transparent); }
   .coffee .glyph { --col: var(--acid, #39ff33); }
   .legal { margin-top: 18px; color: var(--cc-muted); font-size: 10px; letter-spacing: .06em; }
@@ -286,7 +289,7 @@ class CybercoreContact extends HTMLElement {
         el('small', { class: 'tag', text: security.label }), mailLink(security.address), el('small', { text: security.note })));
     }
 
-    const list = el('ul');
+    const list = el('ul', { class: 'channel-list' });
     for (const c of channels) {
       const a = link(c.url, el('span', { class: 'glyph', text: c.glyph, 'aria-hidden': 'true' }),
         el('span', { text: c.label }), el('span', { class: 'handle', text: c.handle ? `/ ${c.handle}` : '' }), el('span', { class: 'arrow', text: '↗', 'aria-hidden': 'true' }));
@@ -295,10 +298,12 @@ class CybercoreContact extends HTMLElement {
     const channelsCol = el('div', { class: 'col c-channels' }, el('span', { class: 'label', text: 'Signal channels' }), this.homeCard(d), list);
 
     const supportCol = el('div', { class: 'col c-support' }, el('span', { class: 'label', text: 'Support the work' }));
+    const supportList = el('div', { class: 'support-list' });
     for (const s of d.support || []) {
       const a = link(s.url, el('span', { class: 'glyph', text: s.glyph, 'aria-hidden': 'true' }), el('span', { text: `${s.label} ↗` }));
-      if (a) { a.className = 'coffee'; supportCol.append(a); }
+      if (a) { a.className = 'coffee'; supportList.append(a); }
     }
+    supportCol.append(supportList);
     const lic = link(d.brand.site); if (lic) lic.textContent = d.brand.site.replace(/^https:\/\/|\/$/g, '');
     supportCol.append(el('p', { class: 'legal' }, document.createTextNode(`${d.legal.license} licensed · `), lic));
 
