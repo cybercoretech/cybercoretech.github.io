@@ -23,7 +23,16 @@
       "label": "Security",
       "address": "security@cybercoretech.net",
       "note": "Vulnerability reports: please don't open a public issue"
+    },
+    "contributors": {
+      "label": "Contributors",
+      "address": "contributors@cybercoretech.net",
+      "note": "Open-source collaboration / private applications"
     }
+  },
+  "team": {
+    "label": "Dev Team",
+    "url": "https://cybercoretech.net/dev-team/"
   },
   "channels": [
     {

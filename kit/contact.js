@@ -123,6 +123,11 @@ const STYLE = `
   .sec .mail { font-size: 13px; }
   .sec .mail:hover { color: var(--orange, #ff9000); text-shadow: 0 0 14px color-mix(in srgb, var(--orange, #ff9000) 60%, transparent); }
   .sec .tag { color: var(--orange, #ff9000); }
+  .contributors { margin-top: 18px; }
+  .contributors .tag { color: var(--pink, #ff147f); }
+  .contributors .mail { font-size: 13px; }
+  .team-link { display: inline-block; margin-top: 5px; color: var(--pink, #ff147f); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+  .team-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 
   ul { margin: 0; padding: 0; list-style: none; }
   .channel-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px 10px; }
@@ -246,7 +251,7 @@ const STYLE = `
 `;
 
 class CybercoreContact extends HTMLElement {
-  static observedAttributes = ['variant', 'repo', 'src', 'bare'];
+  static observedAttributes = ['variant', 'repo', 'src', 'bare', 'hide-home'];
 
   connectedCallback() {
     if (!this.shadowRoot) this.attachShadow({ mode: 'open' });
@@ -277,7 +282,7 @@ class CybercoreContact extends HTMLElement {
   }
 
   full(d) {
-    const { contact, security } = d.email;
+    const { contact, security, contributors } = d.email;
     const channels = [...d.channels];
     const issues = this.repoIssues();
     if (issues) channels.push({ glyph: '!?', label: 'Issues', handle: this.getAttribute('repo'), url: issues });
@@ -287,6 +292,15 @@ class CybercoreContact extends HTMLElement {
     if (security) {
       contactCol.append(el('div', { class: 'sec' },
         el('small', { class: 'tag', text: security.label }), mailLink(security.address), el('small', { text: security.note })));
+    }
+    if (contributors) {
+      const contributorBlock = el('div', { class: 'contributors' },
+        el('small', { class: 'tag', text: contributors.label }),
+        mailLink(contributors.address),
+        el('small', { text: contributors.note }));
+      const teamLink = link(d.team?.url);
+      if (teamLink) { teamLink.className = 'team-link'; teamLink.textContent = 'VIEW ROLES / APPLY ↗'; contributorBlock.append(teamLink); }
+      contactCol.append(contributorBlock);
     }
 
     const list = el('ul', { class: 'channel-list' });
@@ -316,6 +330,7 @@ class CybercoreContact extends HTMLElement {
 
   /** The website, featured: the one link on the block meant to stand out. */
   homeCard(d) {
+    if (this.hasAttribute('hide-home')) return null;
     const home = d.home || { label: 'Home base', url: d.brand.site, title: (d.brand.site || '').replace(/^https:\/\/|\/$/g, '') };
     const href = safeUrl(home.url);
     if (!href || isCurrentSite(href)) return null;
@@ -355,7 +370,7 @@ class CybercoreContact extends HTMLElement {
   }
 
   compact(d) {
-    const { contact, security } = d.email;
+    const { contact, security, contributors } = d.email;
     const strip = el('nav', { class: 'strip', 'aria-label': `${d.brand.name} contact` }, mailLink(contact.address));
     const add = (url, text, cls = '') => {
       const a = link(url); if (!a) return;
@@ -363,10 +378,12 @@ class CybercoreContact extends HTMLElement {
       strip.append(el('span', { class: 'sep', text: '/', 'aria-hidden': 'true' }), a);
     };
     const home = d.home || { url: d.brand.site };
-    if (home.url && !isCurrentSite(home.url)) add(home.url, `${(home.title || home.url.replace(/^https:\/\/|\/$/g, ''))} ↗`, 'home-s');
+    if (!this.hasAttribute('hide-home') && home.url && !isCurrentSite(home.url)) add(home.url, `${(home.title || home.url.replace(/^https:\/\/|\/$/g, ''))} ↗`, 'home-s');
     for (const c of d.channels) add(c.url, c.label);
     const issues = this.repoIssues(); if (issues) add(issues, 'Issues');
     if (security) add(`mailto:${security.address}`, 'Security', 'sec-s');
+    if (contributors) add(`mailto:${contributors.address}`, 'Contributors');
+    if (d.team?.url) add(d.team.url, 'Dev Team / Apply');
     for (const s of d.support || []) add(s.url, `${s.label} ↗`, 'coffee-s');
     return strip;
   }
