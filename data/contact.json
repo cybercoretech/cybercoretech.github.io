@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "updated": "2026-10-01",
+  "updated": "2026-10-20",
   "brand": {
     "name": "CYBERCORE TECH",
     "tagline": "Schema-driven systems for the dark edge",
@@ -62,6 +62,20 @@
       "label": "Buy Me a Coffee",
       "handle": "cybercoretech",
       "url": "https://buymeacoffee.com/cybercoretech"
+    },
+    {
+      "id": "paypal",
+      "glyph": "PP",
+      "label": "Donate with PayPal",
+      "handle": "elementxdesign",
+      "url": "https://paypal.me/elementxdesign"
+    },
+    {
+      "id": "github-sponsors",
+      "glyph": "GH",
+      "label": "GitHub Sponsors",
+      "handle": "darkstardevx",
+      "url": "https://github.com/sponsors/darkstardevx"
     }
   ],
   "legal": {
