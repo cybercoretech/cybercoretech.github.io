@@ -2,15 +2,16 @@
 
 The public Cybercore Tech organization landing surface for `cybercoretech.github.io`.
 
-This site is separate from the existing `cybercoretech.net` project. It presents the Cybercore Tech identity, five core repositories, the 81-theme CYBERGRID matrix, the Theme Studio entry point, and open-system acknowledgements.
+This site is separate from the existing `cybercoretech.net` project. It presents the Cybercore Tech identity, the core repositories, the 224-theme CYBERGRID matrix, the governed Control Plane catalog, and open-system acknowledgements.
 
 The theme gallery reads its catalog and palette JSON from `data/`. Keep those
 files aligned with `framework/cybercore/schema/themes/`; the gallery computes
-its theme and family counts from `data/cybergrid.json`. Cybercore Theme Studio
+its theme and family counts from `data/cybergrid.json`. Every built-in theme
+also carries selectable CyberDark wallpaper options. Cybercore Theme Studio
 supports custom themes, curated-family copies, and portable `.cyberpack.json`
 imports and exports for local Cybercore applications.
 
-Cybercore 0.8.0 publishes the `cybercore-theme` quality and pack-checking CLI.
+Cybercore 0.8.1 publishes the `cybercore-theme` quality and pack-checking CLI. The current Control Plane catalog tracks 287 governed resources across themes, effects, components, snippets, assets, and packs.
 The public Pages site serves `install.sh` at
 `https://cybercoretech.github.io/install.sh`; the quick install is:
 
