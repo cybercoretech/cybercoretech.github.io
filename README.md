@@ -2,7 +2,7 @@
 
 The public Cybercore Tech organization landing surface for `cybercoretech.github.io`.
 
-This site is separate from the existing `cybercoretech.net` project. It presents the Cybercore Tech identity, the core repositories, the 242-theme CYBERGRID matrix, the governed Control Plane catalog, and open-system acknowledgements.
+This site is separate from the existing `cybercoretech.net` project. It presents the Cybercore Tech identity, the core repositories, the 254-theme CYBERGRID matrix, the governed Control Plane catalog, and open-system acknowledgements.
 
 The theme gallery reads its catalog and palette JSON from `data/`. Keep those
 files aligned with `framework/cybercore/schema/themes/`; the gallery computes
