@@ -141,6 +141,6 @@
 
   <rect x="76" y="806" width="1448" height="1" fill="url(#cyan)"/>
   <text x="76" y="829" class="micro">05 CORE NODES</text>
-  <text x="800" y="829" text-anchor="middle" class="micro">224 THEMES // 01 SCHEMA // 00 DRIFT</text>
+  <text x="800" y="829" text-anchor="middle" class="micro">230 THEMES // 01 SCHEMA // 00 DRIFT</text>
   <text x="1524" y="829" text-anchor="end" class="micro">FOLLOW THE SIGNAL ↗</text>
 </svg>
