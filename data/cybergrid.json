@@ -24,17 +24,17 @@
     ],
     "cybercore-tech": [
       "cybercore-tech",
-      "cybercore-tech-alpha",
-      "cybercore-tech-arc",
-      "cybercore-tech-array",
-      "cybercore-tech-beacon",
-      "cybercore-tech-cipher",
-      "cybercore-tech-delta",
-      "cybercore-tech-echo",
-      "cybercore-tech-flux",
-      "cybercore-tech-ghost",
-      "cybercore-tech-helix",
-      "cybercore-tech-ion"
+      "cybercore-tech-neon-forge",
+      "cybercore-tech-signal-core",
+      "cybercore-tech-quantum-grid",
+      "cybercore-tech-orbital-link",
+      "cybercore-tech-hex-vector",
+      "cybercore-tech-circuit-dawn",
+      "cybercore-tech-ghost-protocol",
+      "cybercore-tech-lumen-stack",
+      "cybercore-tech-iron-neural",
+      "cybercore-tech-plasma-node",
+      "cybercore-tech-command-green"
     ],
     "cyberdark": [
       "cyberdark-aurora",
