@@ -23,7 +23,18 @@
       "alien-vector"
     ],
     "cybercore-tech": [
-      "cybercore-tech"
+      "cybercore-tech",
+      "cybercore-tech-alpha",
+      "cybercore-tech-arc",
+      "cybercore-tech-array",
+      "cybercore-tech-beacon",
+      "cybercore-tech-cipher",
+      "cybercore-tech-delta",
+      "cybercore-tech-echo",
+      "cybercore-tech-flux",
+      "cybercore-tech-ghost",
+      "cybercore-tech-helix",
+      "cybercore-tech-ion"
     ],
     "cyberdark": [
       "cyberdark-aurora",
@@ -115,7 +126,13 @@
       "cyborg-servo-night",
       "cyborg-synthetic-dawn",
       "cyborg-titanium-pulse",
-      "cyborg-wired-ghost"
+      "cyborg-wired-ghost",
+      "cyborg-chrome-sentinel",
+      "cyborg-neural-ghost",
+      "cyborg-servo-ash",
+      "cyborg-synthetic-void",
+      "cyborg-titanium-orbit",
+      "cyborg-wired-signal"
     ],
     "dark-futurism": [
       "dark-futurism-neon-wasteland",
@@ -179,7 +196,13 @@
       "dystopian-frontier-dead-sector",
       "dystopian-frontier-fallow-city",
       "dystopian-frontier-red-quarantine",
-      "dystopian-frontier-wastewire"
+      "dystopian-frontier-wastewire",
+      "dystopian-frontier-blackout",
+      "dystopian-frontier-broken-sun",
+      "dystopian-frontier-dustline",
+      "dystopian-frontier-exile",
+      "dystopian-frontier-iron-wind",
+      "dystopian-frontier-scarcity"
     ],
     "futuristic": [
       "futuristic-alpha",
@@ -232,7 +255,10 @@
       "night-ops-flux",
       "night-ops-ghost",
       "night-ops-helix",
-      "night-ops-ion"
+      "night-ops-ion",
+      "night-ops-lattice",
+      "night-ops-mirage",
+      "night-ops-sentinel"
     ],
     "omarchy-live": [
       "blackbox-industrial",
@@ -243,7 +269,10 @@
       "demon",
       "futurist",
       "hacker-den",
-      "robzee84"
+      "robzee84",
+      "omarchy-terminal",
+      "omarchy-aurora",
+      "omarchy-grid"
     ],
     "plasma-core": [
       "plasma-core-alpha",
@@ -265,7 +294,13 @@
       "rainline-district",
       "solar-flare",
       "deep-ocean",
-      "biochrome"
+      "biochrome",
+      "signal-cities-blackout",
+      "signal-cities-cascade",
+      "signal-cities-horizon",
+      "signal-cities-nightline",
+      "signal-cities-overwatch",
+      "signal-cities-transit"
     ],
     "synth-industrial": [
       "synth-industrial-alpha",
@@ -311,7 +346,17 @@
     ],
     "tokyo": [
       "tokyo-city",
-      "tokyo-sky"
+      "tokyo-sky",
+      "tokyo-neon",
+      "tokyo-midnight",
+      "tokyo-rain",
+      "tokyo-shibuya",
+      "tokyo-circuit",
+      "tokyo-afterglow",
+      "tokyo-lantern",
+      "tokyo-signal",
+      "tokyo-arc",
+      "tokyo-pulse"
     ]
   },
   "wallpaper_options": {
