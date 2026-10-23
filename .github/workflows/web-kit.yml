@@ -1,0 +1,44 @@
+name: Validate published Web Kit
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "kit/v1/**"
+      - ".github/workflows/web-kit.yml"
+  pull_request:
+    paths:
+      - "kit/v1/**"
+      - ".github/workflows/web-kit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate kit/v1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate required assets
+        run: |
+          test -s kit/v1/cybercore.js
+          test -s kit/v1/tokens.css
+          test -s kit/v1/components.css
+          test -s kit/v1/effects.css
+          test -s kit/v1/webkit.json
+          ! test -e kit/v1/app.js
+
+      - name: Validate JavaScript and schema
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: |
+          node --check kit/v1/cybercore.js
+          jq empty kit/v1/webkit.json
+          grep -q "version: '1.0.0'" kit/v1/cybercore.js
