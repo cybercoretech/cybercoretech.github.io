@@ -6,12 +6,13 @@
   <meta name="description" content="Cybercore Tech — schema-driven systems for the dark edge.">
   <title>Cybercore Tech — Systems for the dark edge</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="theme-chooser/cybercore-theme-chooser.css">
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="#top" data-brand-phase="0" aria-label="Cybercore Tech home"><span class="brand-emblem">CC</span><span class="brand-name">CYBERCORE <b>/</b> TECH</span></a>
     <nav class="main-nav" aria-label="Primary navigation"><a href="#framework">FRAMEWORK</a><a href="#systems">SYSTEMS</a><a href="#themes">THEMES</a><a href="#connect">CONNECT</a><a data-cybercore-master-docs href="https://cybercoretech.github.io/cybercore/docs.html" style="color:#22e6ff;border:1px solid #263454;border-radius:999px;padding:7px 12px;text-decoration:none;font:600 .7rem ui-monospace,monospace;letter-spacing:.08em;white-space:nowrap">MASTER DOCS ↗</a></nav>
-    <div class="theme-picker"><span class="theme-label">THEME</span><button id="themeButton" class="theme-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="themeMenu">LOADING THEMES…</button><div id="themeMenu" class="theme-menu" role="listbox" aria-label="Choose a Cybercore theme" hidden></div><select id="themeSelect" aria-hidden="true" tabindex="-1"><option>LOADING THEMES…</option></select></div>
+    <div class="theme-picker" data-cc-theme-chooser></div>
   </header>
 
   <main id="top">
@@ -34,7 +35,15 @@
     <section class="section connect" id="connect"><div><p class="eyebrow">03 / OPEN SIGNAL</p><h2>Stay close<br>to <em>the source.</em></h2><p>Browse the repositories, inspect the schema, or connect with Cybercore Tech about a system that needs a sharper surface.</p></div><cybercore-contact class="contact-block"><a href="mailto:dev@cybercoretech.net">dev@cybercoretech.net</a></cybercore-contact></section>
   </main>
   <footer><span>CYBERCORE TECH / HUMAN-TESTED SYSTEMS / PUBLIC SOURCE / MIT</span><span class="thanks-links">WITH THANKS TO <a href="https://omarchy.org/">OMARCHY</a> · <a href="https://www.rust-lang.org/">RUST</a> · <a href="https://www.kernel.org/">LINUX</a> · <a href="https://archlinux.org/">ARCH</a> · <a href="https://quickshell.org/">QUICKSHELL</a> · <a href="https://www.lua.org/">LUA</a></span></footer>
-  <script src="app.js"></script>
+  <script>
+  window.SITE = {
+    dataRoot: '/theme-chooser/data',
+    defaultTheme: 'neon-night',
+    mashups: []
+  };
+</script>
+<script src="theme-chooser/cybercore-theme-chooser.js"></script>
+<script src="app.js"></script>
   <script type="module" src="kit/contact.js"></script>
 </body>
 </html>

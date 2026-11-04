@@ -34,3 +34,9 @@
 .contact-block{grid-column:1/-1;margin-top:18px;padding:26px 28px 22px;border:1px solid var(--line);background:color-mix(in srgb,var(--panel) 85%,transparent)}.contact-block a{color:var(--cyan)}@media(max-width:760px){.contact-block{padding:20px 16px}}
 .install-panel{display:grid;grid-template-columns:1fr 1.2fr;gap:30px;margin-top:16px;padding:26px;border:1px solid #00e5ff42;background:linear-gradient(125deg,#16151fe8,#0b111be8)}.install-copy h3{margin:0 0 10px;font:700 clamp(22px,3vw,34px)/1 var(--display)}.install-copy p:not(.eyebrow){max-width:460px;color:var(--muted);font-size:13px}.install-copy>a,.install-command>a{color:var(--cyan);font:10px var(--mono);letter-spacing:.06em}.install-copy code,.install-command code{color:var(--acid);font:inherit}.install-command{display:flex;flex-direction:column;justify-content:center;gap:13px;padding:20px;border:1px solid var(--line);background:#090e17cc}.install-command>span{color:var(--muted);font:9px var(--mono);letter-spacing:.1em}.install-command>code{display:block;overflow-wrap:anywhere;padding:14px;border:1px solid #39ff3344;background:#39ff330a;font:clamp(11px,1.4vw,14px) var(--mono)}.install-command small{color:var(--muted);font:10px/1.5 var(--mono)}
 @media(max-width:700px){.install-panel{grid-template-columns:1fr;padding:18px}.install-command{padding:14px}}
+
+
+/* Remove the legacy outer theme-picker frame. */
+.theme-picker[data-cc-theme-chooser] {
+  border: 0;
+}

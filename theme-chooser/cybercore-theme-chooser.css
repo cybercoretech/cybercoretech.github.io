@@ -1,0 +1,143 @@
+/* Host-agnostic shared chooser. Override --cc-picker-* on the host as desired.
+   Legacy Control Plane class names are supported inside #picker. */
+.cc-theme-picker {
+  --cc-picker-bg: var(--panel, #16151f);
+  --cc-picker-fg: var(--white, #f0f0f2);
+  --cc-picker-line: var(--line, #32303e);
+  --cc-picker-accent: var(--pink, #ff147f);
+  --cc-picker-muted: var(--muted, #807f8b);
+  position: relative;
+  z-index: 20;
+  color: var(--cc-picker-fg);
+  font: 600 .68rem/1.2 var(--mono, ui-monospace, monospace);
+}
+.cc-theme-picker .cc-theme-button,
+.cc-theme-picker .theme-button {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  min-width: 13.5rem;
+  max-width: 100%;
+  padding: .65rem .8rem;
+  color: inherit;
+  background: var(--glass, var(--cc-picker-bg));
+  border: 1px solid var(--cc-picker-accent);
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: .08em;
+}
+.cc-theme-picker .cc-theme-button > span:first-of-type,
+.cc-theme-picker .theme-button > span:first-of-type {
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.cc-theme-picker .cc-theme-button[aria-expanded="true"],
+.cc-theme-picker .theme-button[aria-expanded="true"] {
+  background: color-mix(in srgb, var(--cc-picker-accent) 14%, var(--cc-picker-bg));
+}
+.cc-theme-picker .cc-theme-swatch,
+.cc-theme-picker .theme-swatch {
+  width: .8rem;
+  height: .8rem;
+  flex: none;
+  background: conic-gradient(var(--acid, #39ff33) 0 25%, var(--pink, #ff147f) 0 50%, var(--cyan, #00e5ff) 0 75%, var(--purple, #8a22e2) 0);
+  box-shadow: 0 0 8px var(--cc-picker-accent);
+}
+.cc-theme-picker .cc-theme-menu,
+.cc-theme-picker .theme-menu {
+  position: absolute;
+  top: calc(100% + .5rem);
+  right: 0;
+  width: min(21rem, calc(100vw - 2rem));
+  z-index: 100;
+  background: color-mix(in srgb, var(--cc-picker-bg) 96%, transparent);
+  border: 1px solid var(--cc-picker-line);
+  box-shadow: 0 1.5rem 4rem #0009;
+  backdrop-filter: blur(16px);
+}
+.cc-theme-picker .cc-theme-menu[hidden],
+.cc-theme-picker .theme-menu[hidden] { display: none; }
+.cc-theme-picker .cc-theme-search,
+.cc-theme-picker .theme-search {
+  padding: .5rem;
+  border-bottom: 1px solid var(--cc-picker-line);
+}
+.cc-theme-picker .cc-theme-search input,
+.cc-theme-picker .theme-search input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: .6rem .7rem;
+  color: var(--cc-picker-fg);
+  background: var(--bg, #09080f);
+  border: 1px solid var(--cc-picker-line);
+  font: inherit;
+  letter-spacing: .05em;
+}
+.cc-theme-picker .cc-theme-search input:focus-visible,
+.cc-theme-picker .theme-search input:focus-visible,
+.cc-theme-picker .cc-theme-button:focus-visible,
+.cc-theme-picker .theme-button:focus-visible,
+.cc-theme-picker .cc-theme-option:focus-visible,
+.cc-theme-picker .theme-option:focus-visible {
+  outline: 2px solid var(--cyan, #00e5ff);
+  outline-offset: 2px;
+}
+.cc-theme-picker .cc-theme-list,
+.cc-theme-picker .theme-list {
+  max-height: min(60vh, 28rem);
+  overflow: auto;
+  padding: .3rem;
+  overscroll-behavior: contain;
+}
+.cc-theme-picker .cc-theme-group-label {
+  position: sticky;
+  top: -.3rem;
+  z-index: 1;
+  margin: .35rem 0 .15rem;
+  padding: .5rem .55rem;
+  color: var(--cc-family, #00e5ff);
+  background: var(--cc-picker-bg);
+  border-left: 2px solid var(--cc-family, #00e5ff);
+  border-bottom: 1px solid color-mix(in srgb, var(--cc-family, #00e5ff) 35%, transparent);
+  font-size: .6rem;
+  letter-spacing: .12em;
+}
+.cc-theme-picker .cc-theme-option,
+.cc-theme-picker .theme-option {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+  padding: .5rem .55rem;
+  color: var(--cc-picker-fg);
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: .04em;
+}
+.cc-theme-picker .cc-theme-option[hidden],
+.cc-theme-picker .cc-theme-group-label[hidden],
+.cc-theme-picker .theme-option[hidden] { display: none; }
+.cc-theme-picker .cc-theme-option:hover,
+.cc-theme-picker .cc-theme-option:focus-visible,
+.cc-theme-picker .cc-theme-option[aria-selected="true"],
+.cc-theme-picker .theme-option:hover,
+.cc-theme-picker .theme-option:focus-visible,
+.cc-theme-picker .theme-option[aria-selected="true"] {
+  color: var(--cc-family, var(--cyan, #00e5ff));
+  background: color-mix(in srgb, var(--cc-family, var(--cyan, #00e5ff)) 14%, var(--cc-picker-bg));
+}
+.cc-theme-picker .cc-theme-dots { display: flex; gap: 2px; margin-left: auto; }
+.cc-theme-picker .cc-theme-dots i { width: .48rem; height: .48rem; border-radius: 50%; }
+.cc-theme-picker .cc-theme-error { color: #f66; }
+@media (max-width: 700px) {
+  .cc-theme-picker .cc-theme-button,
+  .cc-theme-picker .theme-button { min-width: 0; max-width: 12rem; }
+  .cc-theme-picker .cc-theme-menu,
+  .cc-theme-picker .theme-menu { position: fixed; top: 4.2rem; left: 1rem; right: 1rem; width: auto; }
+}
