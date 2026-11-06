@@ -64,6 +64,27 @@ const FAMILY_COLORS = {
   neosynth: ['#00ff8c', '#ff2a9d'], synthwave: ['#4cc9f0', '#ff007f']
 };
 const HEX = /^[0-9a-f]{6}$/i;
+const COLOR = /#[0-9a-f]{3,8}\b|rgba?\([^()]*\)/gi;
+
+/* Literal colours -> {r,g,b,a}. Accepts #rgb[a], #rrggbb[aa], rgb()/rgba()
+   with commas or spaces (what browsers serialise CSSOM values to). */
+function parseColor(text) {
+  const t = String(text).trim();
+  let m = /^#([0-9a-f]{3,8})$/i.exec(t);
+  if (m) {
+    let h = m[1];
+    if (h.length === 3 || h.length === 4) h = [...h].map(c => c + c).join('');
+    if (h.length !== 6 && h.length !== 8) return null;
+    const n = i => parseInt(h.slice(i, i + 2), 16);
+    return { r: n(0), g: n(2), b: n(4), a: h.length === 8 ? n(6) / 255 : 1 };
+  }
+  m = /^rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)(?:\s*[,/]\s*([\d.]+%?))?\s*\)$/i.exec(t);
+  if (!m) return null;
+  const a = m[4] == null ? 1 : m[4].endsWith('%') ? parseFloat(m[4]) / 100 : parseFloat(m[4]);
+  return { r: +m[1], g: +m[2], b: +m[3], a };
+}
+const hexRgb = h => parseColor(`#${h}`);
+const lum = c => (0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b) / 255;
 
 const titleCase = s => String(s).split(/[-_\s]+/).filter(Boolean).map(w => (/\d/.test(w) ? w.toUpperCase() : w[0].toUpperCase() + w.slice(1))).join(' ');
 const hueOf = name => [...name].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) % 360;
@@ -102,6 +123,75 @@ function createStore() {
   let current = null;
   let currentPalette = null;
   let painted = [];
+  /* Most sites hard-code colours (panel fills, borders, glows) next to their
+     CSS variables, so variables alone leave much of the page unthemed. On a
+     theme pick every literal colour in the page's own stylesheets and inline
+     styles is re-expressed against the nearest site variable (its original
+     value read before any theme paints) and moved onto the theme's colour
+     for that slot, keeping its offset and alpha. Edits happen in place, so
+     the cascade is untouched, and "Site default" restores every original.
+     Opt out with window.SITE.recolor = false. */
+  let anchors = null;
+  let edits = [];
+  const paintedNames = new Set(Object.values(vars).flat().filter(Boolean));
+  function readAnchors() {
+    const cs = getComputedStyle(document.documentElement);
+    const out = [];
+    for (const [slot, names] of Object.entries(vars)) {
+      for (const name of [].concat(names || [])) {
+        const c = parseColor(cs.getPropertyValue(name));
+        if (c && c.a === 1) { out.push({ slot, c }); break; } // translucent tints are not a slot's identity
+      }
+    }
+    return out;
+  }
+  function restoreLiterals() {
+    for (let i = edits.length - 1; i >= 0; i--) { const e = edits[i]; e.style.setProperty(e.prop, e.value, e.priority); }
+    edits = [];
+  }
+  function recolorLiterals(p) {
+    if (!anchors.length || site.recolor === false) return;
+    const map = (text, prop) => {
+      const c = parseColor(text);
+      if (!c) return text;
+      let best = null;
+      let dist = Infinity;
+      for (const a of anchors) {
+        const d = Math.hypot(c.r - a.c.r, c.g - a.c.g, c.b - a.c.b);
+        if (d < dist) { dist = d; best = a; }
+      }
+      if (!best || dist > 96 || !p[best.slot]) return text;
+      if (prop.includes('shadow') && lum(c) < 0.06) return text; // plain dark drop shadows stay
+      const to = hexRgb(p[best.slot]);
+      const surface = best.slot === 'bg' || best.slot === 'panel' || best.slot === 'line';
+      const flip = surface && (lum(best.c) < 0.5) !== (lum(to) < 0.5) ? -1 : 1; // surface tints follow a light theme the other way
+      const ch = k => Math.max(0, Math.min(255, Math.round(to[k] + flip * (c[k] - best.c[k]))));
+      const alpha = Math.round(c.a * 1000) / 1000;
+      return alpha < 1 ? `rgba(${ch('r')}, ${ch('g')}, ${ch('b')}, ${alpha})` : `rgb(${ch('r')}, ${ch('g')}, ${ch('b')})`;
+    };
+    const fix = style => {
+      const props = Array.from(style);
+      for (const prop of props) {
+        if (paintedNames.has(prop) || prop.startsWith('--ccx')) continue;
+        const value = style.getPropertyValue(prop);
+        if (!value || !COLOR.test(value)) { COLOR.lastIndex = 0; continue; }
+        COLOR.lastIndex = 0;
+        const next = value.replace(COLOR, m => map(m, prop));
+        if (next === value) continue;
+        const priority = style.getPropertyPriority(prop);
+        edits.push({ style, prop, value, priority });
+        style.setProperty(prop, next, priority);
+      }
+    };
+    const walk = rules => { for (const r of rules) { if (r.style) fix(r.style); if (r.cssRules) walk(r.cssRules); } };
+    for (const sheet of document.styleSheets) {
+      if (/\/kit\/chooser\.css(\?|$)/.test(sheet.href || '')) continue;
+      let rules;
+      try { rules = sheet.cssRules; } catch { continue; } // cross-origin sheet
+      if (rules) walk(rules);
+    }
+    document.querySelectorAll('body [style]').forEach(el => { if (!el.closest('cybercore-theme-chooser')) fix(el.style); });
+  }
 
   const mashOf = id => mashups.find(m => m.id === id) || siteBlends.find(m => m.id === id);
   const parseMix = id => {
@@ -161,11 +251,14 @@ function createStore() {
     return blend(base, accent);
   }
 
-  function writeVars(p) {
+  function writeVars(p, recolor = true) {
     const root = document.documentElement;
+    restoreLiterals();
     painted.forEach(v => root.style.removeProperty(v));
     painted = [];
+    anchors ||= readAnchors();
     if (!p) return;
+    if (recolor) recolorLiterals(p);
     for (const [slot, names] of Object.entries(vars)) {
       if (!names || !p[slot]) continue;
       for (const name of [].concat(names)) { root.style.setProperty(name, `#${p[slot]}`); painted.push(name); }
@@ -175,7 +268,7 @@ function createStore() {
   }
   function paint(id, p) {
     const go = () => {
-      writeVars(p);
+      writeVars(p, id !== SITE_ID && id !== siteTheme()); // the site's own look stays exactly as designed
       document.documentElement.dataset.theme = id;
     };
     if (current !== null && document.startViewTransition && !reducedMotion()) document.startViewTransition(go);
@@ -204,7 +297,7 @@ function createStore() {
   function paintCached(startId) {
     try {
       const cached = JSON.parse(safeGet(STORE_PALETTE) || 'null');
-      if (cached && cached.id === startId && cached.palette) writeVars(normalise(cached.palette));
+      if (cached && cached.id === startId && cached.palette) writeVars(normalise(cached.palette), startId !== site.defaultTheme);
     } catch { /* ignore a corrupt cache */ }
   }
 
