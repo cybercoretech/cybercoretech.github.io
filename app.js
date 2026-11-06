@@ -6,7 +6,7 @@ document.addEventListener('cc:theme', event => {
   const { id, palette } = event.detail || {};
   if (!id || !palette) return;
 
-  if (active) active.textContent = String(id).replaceAll('-', ' ').toUpperCase();
+  if (active) active.textContent = (event.detail.label || String(id).replaceAll('-', ' ')).toUpperCase();
 
   if (swatches) {
     const keys = ['acid_green', 'hot_pink', 'purple', 'cyan', 'orange', 'red'];
@@ -19,20 +19,14 @@ document.addEventListener('cc:theme', event => {
   }
 });
 
-window.addEventListener('cc:theme-chooser-ready', event => {
-  const detail = event.detail || {};
+document.addEventListener('cc:themes-ready', event => {
+  const { total = 612, mashups = 12, families = 50 } = event.detail || {};
   const schemaVersion = document.querySelector('#schemaVersion');
   const themeCount = document.querySelector('#themeCount');
   const themeSummary = document.querySelector('#themeSummary');
-
   if (schemaVersion) schemaVersion.textContent = '1';
-  if (themeCount) themeCount.textContent = String(detail.totalCount ?? detail.sourceCount ?? 600);
-  if (themeSummary) {
-    themeSummary.textContent =
-      `${detail.sourceCount ?? 600} SOURCE THEMES / ` +
-      `${detail.familyCount ?? 50} FAMILIES / ` +
-      `${detail.mashupCount ?? 0} SIGNATURE MASHUPS`;
-  }
+  if (themeCount) themeCount.textContent = String(total);
+  if (themeSummary) themeSummary.textContent = `${total - mashups} SOURCE THEMES / ${families} FAMILIES / ${mashups} SIGNATURE MASHUPS`;
 });
 
 const brand=document.querySelector('.brand');if(!matchMedia('(prefers-reduced-motion:reduce)').matches){let phase=0;setInterval(()=>{phase=(phase+1+Math.floor(Math.random()*5))%6;brand.dataset.brandPhase=phase},4700)}window.addEventListener('pointermove',e=>{root.style.setProperty('--x',`${e.clientX}px`);root.style.setProperty('--y',`${e.clientY}px`)},{passive:true});

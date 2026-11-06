@@ -1,0 +1,42 @@
+name: Validate theme registry
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/**"
+      - "kit/chooser.*"
+      - "tools/validate-themes.py"
+      - ".github/workflows/themes.yml"
+  pull_request:
+    paths:
+      - "data/**"
+      - "kit/chooser.*"
+      - "tools/validate-themes.py"
+      - ".github/workflows/themes.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Registry, mashups and chooser
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate registry and mashups
+        run: python3 tools/validate-themes.py
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check chooser syntax
+        run: |
+          cp kit/chooser.js /tmp/chooser.mjs
+          node --check /tmp/chooser.mjs
+          test -s kit/chooser.css

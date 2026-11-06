@@ -36,7 +36,5 @@
 @media(max-width:700px){.install-panel{grid-template-columns:1fr;padding:18px}.install-command{padding:14px}}
 
 
-/* Remove the legacy outer theme-picker frame. */
-.theme-picker[data-cc-theme-chooser] {
-  border: 0;
-}
+/* Universal theme chooser: match the header's 10px-mono pink pill. */
+cybercore-theme-chooser.theme-picker{padding:0;border:0;background:none;color:inherit;--ccx-font:var(--mono);--ccx-tracking:.08em;--ccx-button-bg:#ff147f0e}
