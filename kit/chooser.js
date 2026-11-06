@@ -11,6 +11,8 @@
  *   data/cybergrid.json                 families → theme ids
  *   data/themes/<family>/<id>.json      palettes
  *   data/mashups.json                   signature mashups (base surfaces × accent neons)
+ *   data/kitty-themes.json              classic terminal palettes, used only as
+ *                                       mashup ingredients (kitty:<name>)
  *
  * Attributes on <cybercore-theme-chooser>:
  *   shuffle            show the random-theme (dice) button
@@ -85,6 +87,9 @@ function createStore() {
   let families = {};
   let mashups = [];
   let siteBlends = [];
+  let kitty = {};
+  const isKitty = id => typeof id === 'string' && id.startsWith('kitty:') && Boolean(kitty[id.slice(6)]);
+  const ingredient = id => familyOf.has(id) || isKitty(id);
   let familyOf = new Map();
   let ids = [];
   let current = null;
@@ -95,7 +100,7 @@ function createStore() {
   const parseMix = id => {
     if (!id || !id.startsWith('mix:')) return null;
     const [, base, accent] = id.split(':');
-    return familyOf.has(base) && familyOf.has(accent) ? { id, base, accent, label: `${titleCase(base)} × ${titleCase(accent)}` } : null;
+    return ingredient(base) && ingredient(accent) ? { id, base, accent, label: `${titleCase(base)} × ${titleCase(accent)}` } : null;
   };
   const blendOf = id => mashOf(id) || parseMix(id);
   const known = id => id === SITE_ID || familyOf.has(id) || Boolean(blendOf(id));
@@ -113,13 +118,16 @@ function createStore() {
   };
 
   const ready = (async () => {
-    const [grid, mash] = await Promise.all([
+    const optional = (file, empty) => fetch(`${dataRoot}${file}`).then(r => (r.ok ? r.json() : empty)).catch(() => empty);
+    const [grid, mash, kit] = await Promise.all([
       fetch(`${dataRoot}cybergrid.json`).then(r => { if (!r.ok) throw new Error(`cybergrid.json: HTTP ${r.status}`); return r.json(); }),
-      fetch(`${dataRoot}mashups.json`).then(r => (r.ok ? r.json() : { mashups: [] })).catch(() => ({ mashups: [] }))
+      optional('mashups.json', { mashups: [] }),
+      optional('kitty-themes.json', { themes: {} })
     ]);
+    kitty = kit.themes || {};
     families = grid.families || {};
     familyOf = new Map(Object.entries(families).flatMap(([f, names]) => names.map(n => [n, f])));
-    const valid = m => m && m.id && familyOf.has(m.base) && familyOf.has(m.accent);
+    const valid = m => m && m.id && ingredient(m.base) && ingredient(m.accent);
     mashups = (mash.mashups || []).filter(valid);
     siteBlends = (Array.isArray(site.mashups) ? site.mashups : []).filter(m => valid(m) && !mashups.some(x => x.id === m.id));
     ids = mashups.map(m => m.id).concat([...familyOf.keys()]);
@@ -127,6 +135,7 @@ function createStore() {
 
   async function palette(id) {
     if (cache.has(id)) return cache.get(id);
+    if (isKitty(id)) { const k = Promise.resolve(normalise(kitty[id.slice(6)])); cache.set(id, k); return k; }
     const family = familyOf.get(id);
     if (!family) throw new Error(`unknown theme ${id}`);
     const pending = fetch(`${dataRoot}themes/${family}/${id}.json`)

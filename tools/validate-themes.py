@@ -41,6 +41,12 @@ for path in sorted((ROOT / "themes").glob("*/*.json")):
     if seen.get(path.stem) != path.parent.name:
         errors.append(f"orphan palette file {path.relative_to(ROOT)} (not listed in cybergrid.json)")
 
+kitty = json.loads((ROOT / "kitty-themes.json").read_text()).get("themes", {})
+for name, palette in kitty.items():
+    for slot in SLOTS:
+        if not HEX.match(str(palette.get(slot, ""))):
+            errors.append(f"kitty-themes.json: {name} slot '{slot}' missing or not 6-digit hex")
+
 mashups = json.loads((ROOT / "mashups.json").read_text()).get("mashups", [])
 mash_ids = set()
 for m in mashups:
@@ -51,8 +57,10 @@ for m in mashups:
     if not m.get("label"):
         errors.append(f"mashup {mid}: missing label")
     for role in ("base", "accent"):
-        if m.get(role) not in seen:
-            errors.append(f"mashup {mid}: {role} '{m.get(role)}' is not a registry theme")
+        ref = str(m.get(role))
+        ok = ref[6:] in kitty if ref.startswith("kitty:") else ref in seen
+        if not ok:
+            errors.append(f"mashup {mid}: {role} '{ref}' is not a registry or kitty: theme")
 
 if errors:
     print(f"{len(errors)} problem(s):")
