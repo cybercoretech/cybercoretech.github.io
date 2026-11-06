@@ -3,6 +3,7 @@
   "surface": "080808",
   "panel": "0f0f0f",
   "border": "333333",
+  "line": "333333",
   "selection": "351525",
   "hover": "501934",
   "white": "ffffff",
