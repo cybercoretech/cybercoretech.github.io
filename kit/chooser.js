@@ -24,7 +24,14 @@
  * That is window.SITE.defaultTheme (a shared theme or one of the page's own
  * SITE.mashups) or, when the page sets none, its stylesheet colours. Site
  * mashups are only used for this; the shared list stays 600 + 12 everywhere.
+ * SITE.siteLabel names a stylesheet-only default (e.g. 'Tag Redact').
  *   align="left"       open the menu from the left edge (default: right)
+ *   compact            below 560px wide, show only the swatch
+ *   match="<selector>" copy typography (font, size, spacing, case, colour)
+ *                      from one of the site's own elements, e.g. a nav link
+ *   adopt              copy the look of the site's own theme button: leave the
+ *                      old <button> inside the element and its computed font,
+ *                      case, corners, border and fill become the --ccx-* tokens
  *
  * Painting: the chosen palette is written to CSS custom properties on <html>.
  * The default names are the Cybercore ones (--bg, --white, --panel, --line,
@@ -108,13 +115,14 @@ function createStore() {
   const labelOf = id => {
     if (id !== SITE_ID) return blendOf(id)?.label || titleCase(id);
     const own = siteTheme();
-    return own ? `Site default · ${titleCase(blendOf(own)?.label || own)}` : 'Site default';
+    const name = own ? titleCase(blendOf(own)?.label || own) : site.siteLabel;
+    return name ? `Site default · ${name}` : 'Site default';
   };
   /* Button text: just the look's name, without the "Site default" prefix. */
   const shortLabel = id => {
     if (id !== SITE_ID) return labelOf(id);
     const own = siteTheme();
-    return own ? titleCase(blendOf(own)?.label || own) : 'Site default';
+    return own ? titleCase(blendOf(own)?.label || own) : (site.siteLabel || 'Site default');
   };
 
   const ready = (async () => {
@@ -237,6 +245,36 @@ async function start(defaultId) {
 }
 
 /* -------------------------------------------------------------- element */
+/* Read a site's own button styling into --ccx-* tokens (see `adopt`). */
+function adoptStyle(from, to) {
+  const cs = getComputedStyle(from);
+  const set = (k, v) => { if (v && v !== 'none' && v !== 'normal' && v !== 'auto' && v !== 'rgba(0, 0, 0, 0)') to.style.setProperty(k, v); };
+  set('--ccx-font', cs.fontFamily);
+  if (parseFloat(cs.fontSize) >= 12) set('--ccx-size', cs.fontSize);
+  set('--ccx-tracking', cs.letterSpacing);
+  if (cs.textTransform === 'lowercase' || cs.textTransform === 'capitalize' || cs.textTransform === 'uppercase') set('--ccx-case', cs.textTransform);
+  set('--ccx-weight', cs.fontWeight);
+  if (cs.borderTopLeftRadius !== '0px') set('--ccx-radius', cs.borderTopLeftRadius);
+  set('--ccx-clip', cs.clipPath);
+  const bordered = cs.borderTopStyle !== 'none' && parseFloat(cs.borderTopWidth) > 0;
+  to.style.setProperty('--ccx-button-border', bordered ? cs.borderTopColor : 'transparent');
+  to.style.setProperty('--ccx-button-bg', cs.backgroundColor);
+  to.style.setProperty('--ccx-button-fg', cs.color);
+  if (parseFloat(cs.height) >= 24) set('--ccx-height', cs.height);
+  to.style.setProperty('--ccx-button-width', 'auto');
+}
+
+/* Typography only, from a reference element on the page (see `match`). */
+function adoptType(from, to) {
+  const cs = getComputedStyle(from);
+  if (cs.fontFamily) to.style.setProperty('--ccx-font', cs.fontFamily);
+  if (parseFloat(cs.fontSize) >= 12) to.style.setProperty('--ccx-size', cs.fontSize);
+  if (cs.letterSpacing && cs.letterSpacing !== 'normal') to.style.setProperty('--ccx-tracking', cs.letterSpacing);
+  to.style.setProperty('--ccx-case', cs.textTransform === 'none' ? 'none' : cs.textTransform);
+  if (cs.fontWeight) to.style.setProperty('--ccx-weight', cs.fontWeight);
+  if (cs.color) to.style.setProperty('--ccx-button-fg', cs.color);
+}
+
 const DICE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><circle cx="8.5" cy="8.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1.1" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.1" fill="currentColor" stroke="none"/></svg>';
 let seq = 0;
 
@@ -245,6 +283,10 @@ class CybercoreThemeChooser extends HTMLElement {
     if (this.built) return;
     this.built = true;
     const uid = `ccx${++seq}`;
+    const legacy = this.hasAttribute('adopt') && this.querySelector('button');
+    if (legacy) adoptStyle(legacy, this);
+    const ref = this.getAttribute('match') && document.querySelector(this.getAttribute('match'));
+    if (ref) adoptType(ref, this);
     this.classList.add('ccx');
     this.innerHTML = `
       <div class="ccx-picker">
@@ -361,9 +403,24 @@ class CybercoreThemeChooser extends HTMLElement {
     const narrow = innerWidth < 560;
     this.menu.classList.toggle('ccx-sheet', narrow);
     const m = this.menu.style;
-    m.top = m.left = m.width = '';
+    m.top = m.left = m.width = m.bottom = '';
     this.list.style.maxHeight = '';
-    if (!narrow) return;
+    this.menu.classList.remove('ccx-up');
+    if (!narrow) {
+      // Fit the list in the viewport; open upward when there's more room above.
+      const b = this.button.getBoundingClientRect();
+      const chrome = 80; // search box + padding
+      const below = innerHeight - b.bottom - 16 - chrome;
+      const above = b.top - 16 - chrome;
+      const want = Math.min(416, innerHeight * 0.6);
+      if (below < Math.min(want, 240) && above > below) {
+        this.menu.classList.add('ccx-up');
+        this.list.style.maxHeight = `${Math.max(140, Math.min(want, above))}px`;
+      } else {
+        this.list.style.maxHeight = `${Math.max(140, Math.min(want, below))}px`;
+      }
+      return;
+    }
     const gutter = 16;
     const top = Math.max(8, Math.min(this.button.getBoundingClientRect().bottom + 8, innerHeight * 0.4));
     const width = document.documentElement.clientWidth - gutter * 2;

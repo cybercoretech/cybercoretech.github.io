@@ -26,6 +26,8 @@ cybercore-theme-chooser {
   --ccx-radius: 0px;
   --ccx-clip: none;
   --ccx-button-bg: color-mix(in srgb, var(--ccx-bg) 82%, transparent);
+  --ccx-button-fg: var(--ccx-fg);
+  --ccx-button-border: var(--ccx-accent);
   --ccx-button-width: 13.5rem;
   --ccx-height: 2.4rem;
   --ccx-menu-width: 19rem;
@@ -63,11 +65,11 @@ cybercore-theme-chooser .ccx-picker { position: relative; min-width: 0; }
 
 cybercore-theme-chooser .ccx-button {
   display: flex; align-items: center; gap: .55rem;
-  width: var(--ccx-button-width); max-width: 100%; min-height: var(--ccx-height);
+  width: var(--ccx-button-width); max-width: min(100%, var(--ccx-button-max, 18rem)); min-height: var(--ccx-height);
   padding: 0 .8rem;
   font-weight: var(--ccx-weight); letter-spacing: var(--ccx-tracking); text-transform: var(--ccx-case);
-  color: var(--ccx-fg); background: var(--ccx-button-bg);
-  border: 1px solid var(--ccx-accent); border-radius: var(--ccx-radius); clip-path: var(--ccx-clip);
+  color: var(--ccx-button-fg); background: var(--ccx-button-bg);
+  border: 1px solid var(--ccx-button-border); border-radius: var(--ccx-radius); clip-path: var(--ccx-clip);
   cursor: pointer; transition: background .2s, box-shadow .2s;
 }
 cybercore-theme-chooser .ccx-button:hover,
@@ -110,6 +112,7 @@ cybercore-theme-chooser .ccx-menu {
   animation: ccx-in .2s cubic-bezier(.2, .8, .2, 1) both;
 }
 cybercore-theme-chooser .ccx-menu.ccx-left { right: auto; left: 0; }
+cybercore-theme-chooser .ccx-menu.ccx-up { top: auto; bottom: calc(100% + .5rem); }
 cybercore-theme-chooser .ccx-menu.ccx-sheet { position: fixed; right: auto; max-width: none; }
 @keyframes ccx-in { from { opacity: 0; transform: translateY(-6px) scale(.98); } }
 
@@ -165,6 +168,13 @@ cybercore-theme-chooser .ccx-empty { margin: 0; padding: 1rem .8rem; color: var(
 
 @media (max-width: 480px) {
   cybercore-theme-chooser { --ccx-button-width: min(11rem, 52vw); }
+}
+/* `compact`: on phones the button shrinks to its swatch (the accessible
+   name still says "Theme: <name>"). */
+@media (max-width: 560px) {
+  cybercore-theme-chooser[compact] .ccx-label,
+  cybercore-theme-chooser[compact] .ccx-chev { display: none; }
+  cybercore-theme-chooser[compact] .ccx-button { width: var(--ccx-height); min-width: var(--ccx-height); padding: 0; justify-content: center; }
 }
 @media (prefers-reduced-motion: reduce) {
   cybercore-theme-chooser .ccx-menu { animation: none; }
