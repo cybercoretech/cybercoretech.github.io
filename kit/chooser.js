@@ -347,7 +347,6 @@ function adoptStyle(from, to) {
   set('--ccx-tracking', cs.letterSpacing);
   if (cs.textTransform === 'lowercase' || cs.textTransform === 'capitalize' || cs.textTransform === 'uppercase') set('--ccx-case', cs.textTransform);
   set('--ccx-weight', cs.fontWeight);
-  if (cs.borderTopLeftRadius !== '0px') set('--ccx-radius', cs.borderTopLeftRadius);
   set('--ccx-clip', cs.clipPath);
   const bordered = cs.borderTopStyle !== 'none' && parseFloat(cs.borderTopWidth) > 0;
   to.style.setProperty('--ccx-button-border', bordered ? cs.borderTopColor : 'transparent');
@@ -401,10 +400,28 @@ class CybercoreThemeChooser extends HTMLElement {
     this.labelEl = this.querySelector('.ccx-label');
     this.uid = uid;
     if (this.getAttribute('align') === 'left') this.menu.classList.add('ccx-left');
+    // Open menus live in the browser's top layer so no page section, logo or
+    // stacking context on any site can cover them.
+    this.layered = typeof this.menu.showPopover === 'function';
+    if (this.layered) { this.menu.setAttribute('popover', 'manual'); this.menu.classList.add('ccx-layer'); }
     this.wire();
     this.unsubscribe = store.onChange((id, p) => this.sync(id, p));
     store.ready.then(() => { this.build(); if (store.current) this.sync(store.current, store.currentPalette); }).catch(() => {});
     start(this.getAttribute('default') || null);
+    requestAnimationFrame(() => this.fit());
+    document.fonts?.ready.then(() => this.fit());
+  }
+  /* If the full button would run past the edge of the screen (a header that
+     doesn't wrap, a long theme name), show just the swatch, like `compact`.
+     Measured with the full label in the same frame, so nothing flickers. */
+  fit() {
+    if (!this.button) return;
+    this.classList.remove('ccx-fit');
+    const vw = document.documentElement.clientWidth;
+    const host = this.parentElement?.getBoundingClientRect();
+    if (host && (host.left >= vw || host.right <= 0)) return; // inside an off-canvas drawer
+    const r = this.button.getBoundingClientRect();
+    if (r.width && (r.right > vw - 2 || r.left < 2)) this.classList.add('ccx-fit');
   }
   disconnectedCallback() { this.unsubscribe?.(); this.observer?.disconnect(); document.removeEventListener('pointerdown', this.outside); document.removeEventListener('keydown', this.hotkey); }
 
@@ -461,6 +478,7 @@ class CybercoreThemeChooser extends HTMLElement {
   sync(id, p) {
     this.labelEl.textContent = store.shortLabel(id);
     this.button.setAttribute('aria-label', `Theme: ${store.labelOf(id)}`);
+    this.fit();
     const swatch = p || null;
     this.style.setProperty('--ccx-s1', swatch ? `#${swatch.acid_green}` : 'var(--ccx-accent)');
     this.style.setProperty('--ccx-s2', swatch ? `#${swatch.hot_pink}` : 'var(--ccx-focus)');
@@ -476,6 +494,7 @@ class CybercoreThemeChooser extends HTMLElement {
   isOpen() { return !this.menu.hidden; }
   open() {
     this.menu.hidden = false;
+    if (this.layered) { try { this.menu.showPopover(); } catch { /* already open */ } }
     this.button.setAttribute('aria-expanded', 'true');
     this.place();
     const sel = this.list.querySelector('[aria-selected="true"]');
@@ -485,6 +504,7 @@ class CybercoreThemeChooser extends HTMLElement {
   }
   close(refocus = false) {
     if (!this.isOpen()) return;
+    if (this.layered) { try { this.menu.hidePopover(); } catch { /* already closed */ } }
     this.menu.hidden = true;
     this.button.setAttribute('aria-expanded', 'false');
     this.filter.value = ''; this.runFilter('');
@@ -493,6 +513,7 @@ class CybercoreThemeChooser extends HTMLElement {
   /* On narrow screens the menu becomes a fixed sheet under the button so it
      can never run off the edge of the page. */
   place() {
+    if (this.layered) return this.placeLayer();
     const narrow = innerWidth < 560;
     this.menu.classList.toggle('ccx-sheet', narrow);
     const m = this.menu.style;
@@ -527,6 +548,34 @@ class CybercoreThemeChooser extends HTMLElement {
     m.top = `${top * 2 - r.top}px`;
     this.list.style.maxHeight = `${Math.max(160, innerHeight - top - 96)}px`;
   }
+  /* Top-layer placement: fixed to the viewport, anchored to the button.
+     Desktop: under it (or above when there's more room), right-aligned, or
+     left-aligned with align="left". Narrow screens: a full-width sheet. */
+  placeLayer() {
+    const m = this.menu.style;
+    const b = this.button.getBoundingClientRect();
+    const vw = document.documentElement.clientWidth;
+    const gutter = innerWidth < 560 ? 16 : 8;
+    this.menu.classList.remove('ccx-up');
+    this.menu.classList.toggle('ccx-sheet', innerWidth < 560);
+    m.top = m.bottom = m.left = m.width = '';
+    if (innerWidth < 560) {
+      const top = Math.max(8, Math.min(b.bottom + 8, innerHeight * 0.4));
+      m.top = `${top}px`; m.left = `${gutter}px`; m.width = `${vw - gutter * 2}px`;
+      this.list.style.maxHeight = `${Math.max(160, innerHeight - top - 96)}px`;
+      return;
+    }
+    const chrome = 80; // search box + padding
+    const below = innerHeight - b.bottom - 16 - chrome;
+    const above = b.top - 16 - chrome;
+    const want = Math.min(416, innerHeight * 0.6);
+    const up = below < Math.min(want, 240) && above > below;
+    this.list.style.maxHeight = `${Math.max(140, Math.min(want, up ? above : below))}px`;
+    const w = this.menu.offsetWidth;
+    const left = this.menu.classList.contains('ccx-left') ? b.left : b.right - w;
+    m.left = `${Math.round(Math.max(gutter, Math.min(left, vw - w - gutter)))}px`;
+    if (up) m.bottom = `${Math.round(innerHeight - b.top + 8)}px`; else m.top = `${Math.round(b.bottom + 8)}px`;
+  }
   runFilter(raw) {
     const q = raw.trim().toLowerCase().replace(/[\s_/]+/g, '-');
     let head = null, any = false, total = 0;
@@ -560,7 +609,8 @@ class CybercoreThemeChooser extends HTMLElement {
     this.filter.addEventListener('input', () => this.runFilter(this.filter.value));
     this.outside = e => { if (this.isOpen() && !this.querySelector('.ccx-picker').contains(e.target)) this.close(); };
     document.addEventListener('pointerdown', this.outside);
-    addEventListener('resize', () => { if (this.isOpen()) this.place(); }, { passive: true });
+    addEventListener('resize', () => { this.fit(); if (this.isOpen()) this.place(); }, { passive: true });
+    addEventListener('scroll', e => { if (this.isOpen() && this.layered && !this.menu.contains(e.target)) this.place(); }, { passive: true, capture: true });
     this.menu.addEventListener('keydown', e => {
       const opts = [...this.list.querySelectorAll('.ccx-option:not([hidden])')];
       const i = opts.indexOf(document.activeElement);

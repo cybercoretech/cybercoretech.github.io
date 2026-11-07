@@ -38,3 +38,6 @@
 
 /* Universal theme chooser: match the header's 10px-mono pink pill. */
 cybercore-theme-chooser.theme-picker{padding:0;border:0;background:none;color:inherit;--ccx-font:var(--mono);--ccx-tracking:.08em;--ccx-button-bg:#ff147f0e}
+
+/* Phones: let the nav wrap so every link, including MASTER DOCS, stays on screen. */
+@media (max-width: 560px){.main-nav{flex-wrap:wrap;justify-content:center;column-gap:16px;row-gap:4px}}
