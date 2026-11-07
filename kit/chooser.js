@@ -384,12 +384,14 @@ class CybercoreThemeChooser extends HTMLElement {
     const ref = this.getAttribute('match') && document.querySelector(this.getAttribute('match'));
     if (ref) adoptType(ref, this);
     this.classList.add('ccx');
+    // data-lenis-prevent: pages with Lenis smooth scroll (e.g. fdroid) would
+    // otherwise take the wheel and scroll the page instead of the list.
     this.innerHTML = `
       <div class="ccx-picker">
         <button class="ccx-button" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="${uid}-menu" title="Theme">
           <i class="ccx-swatch" aria-hidden="true"></i><span class="ccx-label">Loading themes…</span><span class="ccx-chev" aria-hidden="true">⌄</span>
         </button>
-        <div class="ccx-menu" id="${uid}-menu" hidden>
+        <div class="ccx-menu" id="${uid}-menu" data-lenis-prevent hidden>
           <div class="ccx-search"><input type="search" placeholder="Filter themes…" aria-label="Filter themes" autocomplete="off" spellcheck="false"></div>
           <div class="ccx-list" id="${uid}-list" role="listbox" aria-label="Theme"></div>
           <p class="ccx-empty" hidden>No themes match.</p>
