@@ -374,6 +374,10 @@ class CybercoreThemeChooser extends HTMLElement {
   connectedCallback() {
     if (this.built) return;
     this.built = true;
+    // mdBook and similar pages shrink the root font (62.5% = 10px); size the
+    // chooser from 16px there so it matches every other site (see chooser.css).
+    const html = document.documentElement;
+    if (parseFloat(getComputedStyle(html).fontSize) < 14 && !html.style.getPropertyValue('--ccx-rem')) html.style.setProperty('--ccx-rem', '16px');
     const uid = `ccx${++seq}`;
     const legacy = this.hasAttribute('adopt') && this.querySelector('button');
     if (legacy) adoptStyle(legacy, this);

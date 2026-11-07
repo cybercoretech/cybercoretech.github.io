@@ -12,10 +12,14 @@
 
  *
  * Corners are always square on every site; there is no radius token.
+ *
+ * Sizes are in --ccx-rem (1rem by default). chooser.js sets it to 16px on
+ * pages whose root font is shrunk, such as mdBook (html { font-size: 62.5% }),
+ * so the chooser is the same size there as everywhere else.
  */
 cybercore-theme-chooser {
   --ccx-font: var(--mono, ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace);
-  --ccx-size: .75rem;
+  --ccx-size: calc(.75 * var(--ccx-rem, 1rem));
   --ccx-weight: 600;
   --ccx-case: uppercase;
   --ccx-tracking: .1em;
@@ -30,17 +34,17 @@ cybercore-theme-chooser {
   --ccx-button-bg: color-mix(in srgb, var(--ccx-bg) 82%, transparent);
   --ccx-button-fg: var(--ccx-fg);
   --ccx-button-border: var(--ccx-accent);
-  --ccx-button-width: 13.5rem;
-  --ccx-height: 2.4rem;
-  --ccx-menu-width: 19rem;
-  --ccx-shadow: 0 1.5rem 4rem rgb(0 0 0 / .55);
+  --ccx-button-width: calc(13.5 * var(--ccx-rem, 1rem));
+  --ccx-height: calc(2.4 * var(--ccx-rem, 1rem));
+  --ccx-menu-width: calc(19 * var(--ccx-rem, 1rem));
+  --ccx-shadow: 0 calc(1.5 * var(--ccx-rem, 1rem)) calc(4 * var(--ccx-rem, 1rem)) rgb(0 0 0 / .55);
   --ccx-blur: 18px;
   --ccx-glow: 1;
 
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: .5rem;
+  gap: calc(.5 * var(--ccx-rem, 1rem));
   min-width: 0;
   max-width: 100%;
   font-family: var(--ccx-font);
@@ -66,9 +70,9 @@ cybercore-theme-chooser [hidden] { display: none !important; }
 cybercore-theme-chooser .ccx-picker { position: relative; min-width: 0; }
 
 cybercore-theme-chooser .ccx-button {
-  display: flex; align-items: center; gap: .55rem;
-  width: var(--ccx-button-width); max-width: min(100%, var(--ccx-button-max, 18rem)); min-height: var(--ccx-height);
-  padding: 0 .8rem;
+  display: flex; align-items: center; gap: calc(.55 * var(--ccx-rem, 1rem));
+  width: var(--ccx-button-width); max-width: min(100%, var(--ccx-button-max, calc(18 * var(--ccx-rem, 1rem)))); min-height: var(--ccx-height);
+  padding: 0 calc(.8 * var(--ccx-rem, 1rem));
   font-weight: var(--ccx-weight); letter-spacing: var(--ccx-tracking); text-transform: var(--ccx-case);
   color: var(--ccx-button-fg); background: var(--ccx-button-bg);
   border: 1px solid var(--ccx-button-border); border-radius: 0; clip-path: var(--ccx-clip);
@@ -84,11 +88,11 @@ cybercore-theme-chooser .ccx-shuffle:focus-visible { outline: 2px solid var(--cc
 cybercore-theme-chooser .ccx-button:disabled { cursor: default; opacity: .7; }
 cybercore-theme-chooser .ccx-label { flex: 1; min-width: 0; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 cybercore-theme-chooser .ccx-swatch {
-  flex: none; width: .8rem; height: .8rem; border-radius: 0;
+  flex: none; width: calc(.8 * var(--ccx-rem, 1rem)); height: calc(.8 * var(--ccx-rem, 1rem)); border-radius: 0;
   background: conic-gradient(var(--ccx-s1, var(--ccx-accent)) 0 25%, var(--ccx-s2, var(--ccx-focus)) 0 50%, var(--ccx-s3, var(--ccx-fg)) 0 75%, var(--ccx-s4, var(--ccx-muted)) 0);
   box-shadow: 0 0 calc(8px * var(--ccx-glow)) var(--ccx-s2, var(--ccx-accent));
 }
-cybercore-theme-chooser .ccx-chev { flex: none; width: 1rem; text-align: center; transition: transform .2s; }
+cybercore-theme-chooser .ccx-chev { flex: none; width: calc(1 * var(--ccx-rem, 1rem)); text-align: center; transition: transform .2s; }
 cybercore-theme-chooser .ccx-button[aria-expanded="true"] .ccx-chev { transform: rotate(180deg); }
 
 cybercore-theme-chooser .ccx-shuffle {
@@ -98,13 +102,13 @@ cybercore-theme-chooser .ccx-shuffle {
   border: 1px solid var(--ccx-focus); border-radius: 0; clip-path: var(--ccx-clip);
   cursor: pointer; transition: background .2s, color .2s;
 }
-cybercore-theme-chooser .ccx-shuffle svg { width: 1.15rem; height: 1.15rem; }
+cybercore-theme-chooser .ccx-shuffle svg { width: calc(1.15 * var(--ccx-rem, 1rem)); height: calc(1.15 * var(--ccx-rem, 1rem)); }
 cybercore-theme-chooser .ccx-shuffle:hover { color: var(--ccx-field); background: var(--ccx-focus); }
 
 /* Menu */
 cybercore-theme-chooser .ccx-menu {
-  position: absolute; right: 0; top: calc(100% + .5rem); z-index: 1000;
-  width: var(--ccx-menu-width); max-width: calc(100vw - 2rem);
+  position: absolute; right: 0; top: calc(100% + calc(.5 * var(--ccx-rem, 1rem))); z-index: 1000;
+  width: var(--ccx-menu-width); max-width: calc(100vw - calc(2 * var(--ccx-rem, 1rem)));
   text-transform: none;
   background: color-mix(in srgb, var(--ccx-bg) 96%, transparent);
   border: 1px solid var(--ccx-line); border-radius: 0;
@@ -114,16 +118,16 @@ cybercore-theme-chooser .ccx-menu {
   animation: ccx-in .2s cubic-bezier(.2, .8, .2, 1) both;
 }
 cybercore-theme-chooser .ccx-menu.ccx-left { right: auto; left: 0; }
-cybercore-theme-chooser .ccx-menu.ccx-up { top: auto; bottom: calc(100% + .5rem); }
+cybercore-theme-chooser .ccx-menu.ccx-up { top: auto; bottom: calc(100% + calc(.5 * var(--ccx-rem, 1rem))); }
 cybercore-theme-chooser .ccx-menu.ccx-sheet { position: fixed; right: auto; max-width: none; }
 /* Top-layer menu (Popover API): undo the UA popover box, place by JS. */
 cybercore-theme-chooser .ccx-menu.ccx-layer { position: fixed; inset: auto; margin: 0; padding: 0; color: inherit; }
 cybercore-theme-chooser .ccx-menu.ccx-layer:not(:popover-open) { display: none; }
 @keyframes ccx-in { from { opacity: 0; transform: translateY(-6px) scale(.98); } }
 
-cybercore-theme-chooser .ccx-search { padding: .5rem; border-bottom: 1px solid var(--ccx-line); }
+cybercore-theme-chooser .ccx-search { padding: calc(.5 * var(--ccx-rem, 1rem)); border-bottom: 1px solid var(--ccx-line); }
 cybercore-theme-chooser .ccx-search input {
-  display: block; width: 100%; padding: .6rem .65rem;
+  display: block; width: 100%; padding: calc(.6 * var(--ccx-rem, 1rem)) calc(.65 * var(--ccx-rem, 1rem));
   letter-spacing: .06em; color: var(--ccx-fg);
   background: var(--ccx-field); border: 1px solid var(--ccx-line); border-radius: 0;
   cursor: text;
@@ -132,16 +136,16 @@ cybercore-theme-chooser .ccx-search input::placeholder { color: var(--ccx-muted)
 cybercore-theme-chooser .ccx-search input:focus { outline: none; border-color: var(--ccx-focus); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ccx-focus) 22%, transparent); }
 
 cybercore-theme-chooser .ccx-list {
-  max-height: min(60vh, 26rem); overflow-y: auto; overscroll-behavior: contain;
-  padding: .3rem; scrollbar-width: thin; scrollbar-color: var(--ccx-accent) transparent;
+  max-height: min(60vh, calc(26 * var(--ccx-rem, 1rem))); overflow-y: auto; overscroll-behavior: contain;
+  padding: calc(.3 * var(--ccx-rem, 1rem)); scrollbar-width: thin; scrollbar-color: var(--ccx-accent) transparent;
 }
 cybercore-theme-chooser .ccx-list::-webkit-scrollbar { width: 8px; }
 cybercore-theme-chooser .ccx-list::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--ccx-accent) 70%, transparent); border-radius: 0; }
 
 cybercore-theme-chooser .ccx-group {
-  position: sticky; top: -.3rem; z-index: 1;
-  display: flex; align-items: center; gap: .45rem;
-  margin: .35rem 0 .15rem; padding: .55rem .6rem .45rem;
+  position: sticky; top: calc(-.3 * var(--ccx-rem, 1rem)); z-index: 1;
+  display: flex; align-items: center; gap: calc(.45 * var(--ccx-rem, 1rem));
+  margin: calc(.35 * var(--ccx-rem, 1rem)) 0 calc(.15 * var(--ccx-rem, 1rem)); padding: calc(.55 * var(--ccx-rem, 1rem)) calc(.6 * var(--ccx-rem, 1rem)) calc(.45 * var(--ccx-rem, 1rem));
   font-weight: 700; letter-spacing: .14em; text-transform: var(--ccx-case);
   color: var(--fa); border-left: 2px solid var(--fa);
   border-bottom: 1px solid color-mix(in srgb, var(--fa) 35%, transparent);
@@ -151,8 +155,8 @@ cybercore-theme-chooser .ccx-group span { flex: 1; min-width: 0; overflow: hidde
 cybercore-theme-chooser .ccx-group em { flex: none; font-style: normal; opacity: .7; }
 
 cybercore-theme-chooser .ccx-option {
-  display: flex; align-items: center; gap: .5rem; width: 100%; min-height: 2.25rem;
-  padding: .45rem .6rem;
+  display: flex; align-items: center; gap: calc(.5 * var(--ccx-rem, 1rem)); width: 100%; min-height: calc(2.25 * var(--ccx-rem, 1rem));
+  padding: calc(.45 * var(--ccx-rem, 1rem)) calc(.6 * var(--ccx-rem, 1rem));
   font-weight: 500; letter-spacing: .06em; text-transform: var(--ccx-case);
   color: var(--ccx-fg); border-radius: 0;
   cursor: pointer; transition: color .12s, background .12s, box-shadow .12s;
@@ -166,13 +170,13 @@ cybercore-theme-chooser .ccx-option[aria-selected="true"] {
 }
 cybercore-theme-chooser .ccx-option:focus-visible { outline: 1px solid var(--fa); outline-offset: -1px; }
 cybercore-theme-chooser .ccx-option[aria-selected="true"]::before { content: "▸"; flex: none; }
-cybercore-theme-chooser .ccx-option[data-family="site"] { margin-bottom: .2rem; border: 1px dashed var(--ccx-line); --fa: var(--ccx-focus); }
+cybercore-theme-chooser .ccx-option[data-family="site"] { margin-bottom: calc(.2 * var(--ccx-rem, 1rem)); border: 1px dashed var(--ccx-line); --fa: var(--ccx-focus); }
 cybercore-theme-chooser .ccx-dots { display: flex; gap: 2px; flex: none; }
-cybercore-theme-chooser .ccx-dots i { width: .55rem; height: .55rem; border-radius: 0; }
-cybercore-theme-chooser .ccx-empty { margin: 0; padding: 1rem .8rem; color: var(--ccx-muted); text-align: center; }
+cybercore-theme-chooser .ccx-dots i { width: calc(.55 * var(--ccx-rem, 1rem)); height: calc(.55 * var(--ccx-rem, 1rem)); border-radius: 0; }
+cybercore-theme-chooser .ccx-empty { margin: 0; padding: calc(1 * var(--ccx-rem, 1rem)) calc(.8 * var(--ccx-rem, 1rem)); color: var(--ccx-muted); text-align: center; }
 
 @media (max-width: 480px) {
-  cybercore-theme-chooser { --ccx-button-width: min(11rem, 52vw); }
+  cybercore-theme-chooser { --ccx-button-width: min(calc(11 * var(--ccx-rem, 1rem)), 52vw); }
 }
 /* `compact`: on phones the button shrinks to its swatch (the accessible
    name still says "Theme: <name>"). */
@@ -190,5 +194,5 @@ cybercore-theme-chooser.ccx-fit .ccx-button { width: var(--ccx-height); min-widt
   cybercore-theme-chooser * { transition: none !important; }
 }
 @media (hover: none) {
-  cybercore-theme-chooser .ccx-option { min-height: 2.75rem; }
+  cybercore-theme-chooser .ccx-option { min-height: calc(2.75 * var(--ccx-rem, 1rem)); }
 }
