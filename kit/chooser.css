@@ -6,9 +6,12 @@
  * that already uses them needs nothing. Override on the element, e.g.:
  *
  *   cybercore-theme-chooser {
- *     --ccx-font: var(--font-body);  --ccx-case: none;  --ccx-radius: 10px;
+ *     --ccx-font: var(--font-body);  --ccx-case: none;
  *     --ccx-bg: var(--surface-2);    --ccx-accent: var(--brand);
  *   }
+
+ *
+ * Corners are always square on every site; there is no radius token.
  */
 cybercore-theme-chooser {
   --ccx-font: var(--mono, ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace);
@@ -23,7 +26,6 @@ cybercore-theme-chooser {
   --ccx-line: var(--line, #32303e);
   --ccx-accent: var(--pink, #ff147f);
   --ccx-focus: var(--cyan, #00e5ff);
-  --ccx-radius: 0px;
   --ccx-clip: none;
   --ccx-button-bg: color-mix(in srgb, var(--ccx-bg) 82%, transparent);
   --ccx-button-fg: var(--ccx-fg);
@@ -69,7 +71,7 @@ cybercore-theme-chooser .ccx-button {
   padding: 0 .8rem;
   font-weight: var(--ccx-weight); letter-spacing: var(--ccx-tracking); text-transform: var(--ccx-case);
   color: var(--ccx-button-fg); background: var(--ccx-button-bg);
-  border: 1px solid var(--ccx-button-border); border-radius: var(--ccx-radius); clip-path: var(--ccx-clip);
+  border: 1px solid var(--ccx-button-border); border-radius: 0; clip-path: var(--ccx-clip);
   cursor: pointer; transition: background .2s, box-shadow .2s;
 }
 cybercore-theme-chooser .ccx-button:hover,
@@ -82,7 +84,7 @@ cybercore-theme-chooser .ccx-shuffle:focus-visible { outline: 2px solid var(--cc
 cybercore-theme-chooser .ccx-button:disabled { cursor: default; opacity: .7; }
 cybercore-theme-chooser .ccx-label { flex: 1; min-width: 0; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 cybercore-theme-chooser .ccx-swatch {
-  flex: none; width: .8rem; height: .8rem; border-radius: min(var(--ccx-radius), 3px);
+  flex: none; width: .8rem; height: .8rem; border-radius: 0;
   background: conic-gradient(var(--ccx-s1, var(--ccx-accent)) 0 25%, var(--ccx-s2, var(--ccx-focus)) 0 50%, var(--ccx-s3, var(--ccx-fg)) 0 75%, var(--ccx-s4, var(--ccx-muted)) 0);
   box-shadow: 0 0 calc(8px * var(--ccx-glow)) var(--ccx-s2, var(--ccx-accent));
 }
@@ -93,7 +95,7 @@ cybercore-theme-chooser .ccx-shuffle {
   display: grid; place-items: center; flex: none;
   width: var(--ccx-height); height: var(--ccx-height);
   color: var(--ccx-focus); background: var(--ccx-button-bg);
-  border: 1px solid var(--ccx-focus); border-radius: var(--ccx-radius); clip-path: var(--ccx-clip);
+  border: 1px solid var(--ccx-focus); border-radius: 0; clip-path: var(--ccx-clip);
   cursor: pointer; transition: background .2s, color .2s;
 }
 cybercore-theme-chooser .ccx-shuffle svg { width: 1.15rem; height: 1.15rem; }
@@ -105,7 +107,7 @@ cybercore-theme-chooser .ccx-menu {
   width: var(--ccx-menu-width); max-width: calc(100vw - 2rem);
   text-transform: none;
   background: color-mix(in srgb, var(--ccx-bg) 96%, transparent);
-  border: 1px solid var(--ccx-line); border-radius: var(--ccx-radius);
+  border: 1px solid var(--ccx-line); border-radius: 0;
   -webkit-backdrop-filter: blur(var(--ccx-blur)); backdrop-filter: blur(var(--ccx-blur));
   box-shadow: var(--ccx-shadow), 0 0 0 1px color-mix(in srgb, var(--ccx-accent) 20%, transparent);
   overflow: hidden;
@@ -114,13 +116,16 @@ cybercore-theme-chooser .ccx-menu {
 cybercore-theme-chooser .ccx-menu.ccx-left { right: auto; left: 0; }
 cybercore-theme-chooser .ccx-menu.ccx-up { top: auto; bottom: calc(100% + .5rem); }
 cybercore-theme-chooser .ccx-menu.ccx-sheet { position: fixed; right: auto; max-width: none; }
+/* Top-layer menu (Popover API): undo the UA popover box, place by JS. */
+cybercore-theme-chooser .ccx-menu.ccx-layer { position: fixed; inset: auto; margin: 0; padding: 0; color: inherit; }
+cybercore-theme-chooser .ccx-menu.ccx-layer:not(:popover-open) { display: none; }
 @keyframes ccx-in { from { opacity: 0; transform: translateY(-6px) scale(.98); } }
 
 cybercore-theme-chooser .ccx-search { padding: .5rem; border-bottom: 1px solid var(--ccx-line); }
 cybercore-theme-chooser .ccx-search input {
   display: block; width: 100%; padding: .6rem .65rem;
   letter-spacing: .06em; color: var(--ccx-fg);
-  background: var(--ccx-field); border: 1px solid var(--ccx-line); border-radius: min(var(--ccx-radius), 8px);
+  background: var(--ccx-field); border: 1px solid var(--ccx-line); border-radius: 0;
   cursor: text;
 }
 cybercore-theme-chooser .ccx-search input::placeholder { color: var(--ccx-muted); opacity: 1; text-transform: var(--ccx-case); }
@@ -131,7 +136,7 @@ cybercore-theme-chooser .ccx-list {
   padding: .3rem; scrollbar-width: thin; scrollbar-color: var(--ccx-accent) transparent;
 }
 cybercore-theme-chooser .ccx-list::-webkit-scrollbar { width: 8px; }
-cybercore-theme-chooser .ccx-list::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--ccx-accent) 70%, transparent); border-radius: 8px; }
+cybercore-theme-chooser .ccx-list::-webkit-scrollbar-thumb { background: color-mix(in srgb, var(--ccx-accent) 70%, transparent); border-radius: 0; }
 
 cybercore-theme-chooser .ccx-group {
   position: sticky; top: -.3rem; z-index: 1;
@@ -149,7 +154,7 @@ cybercore-theme-chooser .ccx-option {
   display: flex; align-items: center; gap: .5rem; width: 100%; min-height: 2.25rem;
   padding: .45rem .6rem;
   font-weight: 500; letter-spacing: .06em; text-transform: var(--ccx-case);
-  color: var(--ccx-fg); border-radius: min(var(--ccx-radius), 6px);
+  color: var(--ccx-fg); border-radius: 0;
   cursor: pointer; transition: color .12s, background .12s, box-shadow .12s;
 }
 cybercore-theme-chooser .ccx-option .ccx-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -163,7 +168,7 @@ cybercore-theme-chooser .ccx-option:focus-visible { outline: 1px solid var(--fa)
 cybercore-theme-chooser .ccx-option[aria-selected="true"]::before { content: "▸"; flex: none; }
 cybercore-theme-chooser .ccx-option[data-family="site"] { margin-bottom: .2rem; border: 1px dashed var(--ccx-line); --fa: var(--ccx-focus); }
 cybercore-theme-chooser .ccx-dots { display: flex; gap: 2px; flex: none; }
-cybercore-theme-chooser .ccx-dots i { width: .55rem; height: .55rem; border-radius: min(var(--ccx-radius), 2px); }
+cybercore-theme-chooser .ccx-dots i { width: .55rem; height: .55rem; border-radius: 0; }
 cybercore-theme-chooser .ccx-empty { margin: 0; padding: 1rem .8rem; color: var(--ccx-muted); text-align: center; }
 
 @media (max-width: 480px) {
@@ -176,6 +181,10 @@ cybercore-theme-chooser .ccx-empty { margin: 0; padding: 1rem .8rem; color: var(
   cybercore-theme-chooser[compact] .ccx-chev { display: none; }
   cybercore-theme-chooser[compact] .ccx-button { width: var(--ccx-height); min-width: var(--ccx-height); padding: 0; justify-content: center; }
 }
+/* Set by the chooser itself when the full button would not fit on screen. */
+cybercore-theme-chooser.ccx-fit .ccx-label,
+cybercore-theme-chooser.ccx-fit .ccx-chev { display: none; }
+cybercore-theme-chooser.ccx-fit .ccx-button { width: var(--ccx-height); min-width: var(--ccx-height); padding: 0; justify-content: center; }
 @media (prefers-reduced-motion: reduce) {
   cybercore-theme-chooser .ccx-menu { animation: none; }
   cybercore-theme-chooser * { transition: none !important; }
