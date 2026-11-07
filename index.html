@@ -7,6 +7,115 @@
   <title>Cybercore Tech — Systems for the dark edge</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="kit/chooser.css">
+  <style id="cc-mobile-first">
+/* Mobile floor (phones + tablets): readable text and finger-sized targets.
+   Generated per range from what renders under 11px / 24px; desktop untouched. */
+@media (max-width: 600px) {
+  a.button,
+  p.signal,
+  div.console-head > span,
+  div.console-head > strong,
+  p.console-kicker,
+  div.nodes > b,
+  div.console-foot > span,
+  #themeCount,
+  div.console-foot > span > b,
+  a.repo > span,
+  a.repo > b,
+  div.live-title > span,
+  #repoSyncStatus,
+  p.live-empty,
+  #repoCount,
+  #refreshRepos,
+  small,
+  #themeSummary,
+  div.install-copy > a,
+  div.install-command > span,
+  div.install-command > a,
+  small > a,
+  footer > span,
+  span.thanks-links,
+  span.thanks-links > a { font-size: 11px !important; }
+}
+@media (min-width: 601px) and (max-width: 860px) {
+  a.button,
+  p.signal,
+  div.console-head > span,
+  div.console-head > strong,
+  p.console-kicker,
+  div.nodes > b,
+  div.console-foot > span,
+  #themeCount,
+  div.console-foot > span > b,
+  a.repo > span,
+  a.repo > b,
+  div.live-title > span,
+  #repoSyncStatus,
+  p.live-empty,
+  #repoCount,
+  #refreshRepos,
+  small,
+  #themeSummary,
+  div.install-copy > a,
+  div.install-command > span,
+  div.install-command > a,
+  small > a,
+  footer > span,
+  span.thanks-links,
+  span.thanks-links > a { font-size: 11px !important; }
+}
+@media (min-width: 861px) and (max-width: 1024px) {
+  a.button,
+  p.signal,
+  div.console-head > span,
+  div.console-head > strong,
+  p.console-kicker,
+  div.nodes > b,
+  div.console-foot > span,
+  #themeCount,
+  div.console-foot > span > b,
+  a.repo > span,
+  a.repo > b,
+  div.live-title > span,
+  #repoSyncStatus,
+  p.live-empty,
+  #repoCount,
+  #refreshRepos,
+  small,
+  #themeSummary,
+  div.install-copy > a,
+  div.install-command > span,
+  div.install-command > a,
+  small > a,
+  footer > span,
+  span.thanks-links,
+  span.thanks-links > a { font-size: 11px !important; }
+}
+@media (pointer: coarse) {
+  div.install-command > a,
+  span.thanks-links > a { min-height: 24px; min-width: 24px; }
+  div.install-copy > a,
+  small > a { display: inline-flex; align-items: center; min-height: 24px; min-width: 24px; }
+}
+/* Mobile floor (phones + tablets): readable text and finger-sized targets.
+   Generated per range from what renders under 11px / 24px; desktop untouched. */
+@media (max-width: 600px) {
+  nav.main-nav > a:not([data-cybercore-master-docs]) { font-size: 11px !important; }
+}
+/* Layout fixes: phones and tablets only; laptops and desktops untouched. */
+@media (max-width: 1024px) {
+  /* Mobile first: nothing may make the page wider than the screen.
+     Grid/flex columns may shrink below their widest line; code scrolls in place. */
+  pre { max-width: 100%; overflow-x: auto; }
+  img, video { max-width: 100%; height: auto; }
+  /* Long paths and URLs in inline code may break anywhere instead of widening the page. */
+  :not(pre) > code { overflow-wrap: anywhere; }
+  /* Live GitHub registry cards (rendered once the GitHub API answers): text at
+     least 11px and repo links finger-sized on phones and tablets. */
+  .discovered-repo small, .discovered-repo b, .live-title small, .live-meta, .stat-line span { font-size: 11px !important; }
+  @media (pointer: coarse) { .live-stat-card > a { display: inline-flex; align-items: center; min-height: 24px; } }
+}
+  </style>
 </head>
 <body>
   <header class="site-header">

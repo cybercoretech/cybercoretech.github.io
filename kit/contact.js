@@ -244,6 +244,15 @@ const STYLE = `
     .col, .col:first-child, .c-support { padding: 0 0 0 14px; border: 0; border-left: 1px solid var(--col); }
     .foot { flex-direction: column; gap: 8px; }
   }
+  /* Phones and tablets: nothing under 11px, and every link is a finger-sized
+     target. Desktop keeps the compact 8-10px labels. */
+  @media (max-width: 1024px), (pointer: coarse) {
+    .label, .chan, .coffee, .legal, .strip, .note, small, .team-link, .foot, .home-kicker, .home-note { font-size: 11px; }
+    .handle { font-size: 10.5px; }
+    .chan { min-height: 32px; }
+    .team-link, .strip a.s { min-height: 32px; display: inline-flex; align-items: center; }
+    .mail { min-height: 32px; display: inline-flex; align-items: center; }
+  }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
     .home:hover, .home:focus-visible { transform: none; }
