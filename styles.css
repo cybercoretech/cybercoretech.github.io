@@ -41,3 +41,6 @@ cybercore-theme-chooser.theme-picker{padding:0;border:0;background:none;color:in
 
 /* Phones: let the nav wrap so every link, including MASTER DOCS, stays on screen. */
 @media (max-width: 560px){.main-nav{flex-wrap:wrap;justify-content:center;column-gap:16px;row-gap:4px}}
+/* Phones: the header wraps to three rows (~184px); pinned it would take a
+   quarter of the screen, so there it scrolls away with the page. */
+@media (max-width: 560px){.site-header{position:relative}}
