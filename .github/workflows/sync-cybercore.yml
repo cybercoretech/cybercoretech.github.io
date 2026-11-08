@@ -1,0 +1,62 @@
+name: Sync from cybercore
+
+# cybercore is the source of the kit and theme data this site serves:
+# kit/v1/*, kit/chooser.*, data/themes/**, data/cybergrid.json,
+# data/mashups.json and data/kitty-themes.json. Edit them in
+# cybercoretech/cybercore; this workflow opens a PR here when they change.
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-cybercore
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Export kit and theme data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch cybercore
+        run: git clone --depth 1 https://github.com/cybercoretech/cybercore.git "$RUNNER_TEMP/cybercore"
+
+      - name: Export
+        run: python3 "$RUNNER_TEMP/cybercore/tools/export-distribution.py" org .
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # PRs opened with GITHUB_TOKEN do not start other workflows, so the
+      # registry checks run here before the PR is opened.
+      - name: Validate
+        run: |
+          python3 tools/validate-themes.py
+          cp kit/chooser.js "$RUNNER_TEMP/chooser.mjs" && node --check "$RUNNER_TEMP/chooser.mjs"
+          node --check kit/v1/cybercore.js
+          jq empty kit/v1/webkit.json
+
+      - name: Open or update pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rev="$(git -C "$RUNNER_TEMP/cybercore" rev-parse --short HEAD)"
+          {
+            echo "Generated from [cybercore@${rev}](https://github.com/cybercoretech/cybercore/commit/${rev}) by \`tools/export-distribution.py org\`."
+            echo
+            echo "Merging publishes these files to every Cybercore Pages site (they load the kit live). The registry and chooser checks passed in the sync run."
+            echo
+            echo '```'
+            git status --short
+            echo '```'
+          } > "$RUNNER_TEMP/body.md"
+          bash "$RUNNER_TEMP/cybercore/tools/open-sync-pr.sh" sync/cybercore "chore(kit): sync from cybercore@${rev}" "$RUNNER_TEMP/body.md"

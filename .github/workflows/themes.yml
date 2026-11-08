@@ -13,6 +13,7 @@ on:
     paths:
       - "data/**"
       - "kit/chooser.*"
+      - "kit/v1/**"
       - "tools/validate-themes.py"
       - ".github/workflows/themes.yml"
   workflow_dispatch:
@@ -40,3 +41,22 @@ jobs:
           cp kit/chooser.js /tmp/chooser.mjs
           node --check /tmp/chooser.mjs
           test -s kit/chooser.css
+
+      # data/ (except contact.json), kit/chooser.* and kit/v1/* are generated
+      # from cybercoretech/cybercore. A PR that edits them by hand would be
+      # reverted by the next sync, so stop it here.
+      - name: Generated files match cybercore
+        if: github.event_name == 'pull_request'
+        run: |
+          git clone --depth 1 https://github.com/cybercoretech/cybercore.git "$RUNNER_TEMP/cybercore"
+          tool="$RUNNER_TEMP/cybercore/tools/export-distribution.py"
+          if [ ! -f "$tool" ]; then
+            echo "cybercore has no export tool yet; skipping."
+            exit 0
+          fi
+          python3 "$tool" org . > /dev/null
+          if ! git diff --quiet || [ -n "$(git ls-files --others --exclude-standard data kit)" ]; then
+            git status --short
+            echo "::error::These files are generated from cybercoretech/cybercore. Make the change there (see docs/distribution.md); if this is a sync PR, cybercore changed again: re-run 'Sync from cybercore'."
+            exit 1
+          fi
