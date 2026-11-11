@@ -1,0 +1,955 @@
+{
+  "format": "cybercore-brand-index",
+  "version": 1,
+  "slots": [
+    "bg",
+    "white",
+    "panel",
+    "line",
+    "muted",
+    "acid-green",
+    "hot-pink",
+    "purple",
+    "cyan",
+    "orange",
+    "red"
+  ],
+  "assets": [
+    {
+      "id": "avatar.mono",
+      "group": "avatar",
+      "name": "mono",
+      "title": "Cybercore symbol",
+      "svg": "svg/avatar/mono.svg",
+      "project": null
+    },
+    {
+      "id": "avatar.panel",
+      "group": "avatar",
+      "name": "panel",
+      "title": "Cybercore symbol",
+      "svg": "svg/avatar/panel.svg",
+      "project": null
+    },
+    {
+      "id": "avatar.round",
+      "group": "avatar",
+      "name": "round",
+      "title": "Cybercore symbol",
+      "svg": "svg/avatar/round.svg",
+      "project": null
+    },
+    {
+      "id": "card.badges-cybercore",
+      "group": "card",
+      "name": "badges-cybercore",
+      "title": "badges-cybercore",
+      "svg": "svg/card/badges-cybercore.svg",
+      "project": null
+    },
+    {
+      "id": "card.badges-top",
+      "group": "card",
+      "name": "badges-top",
+      "title": "badges-top",
+      "svg": "svg/card/badges-top.svg",
+      "project": null
+    },
+    {
+      "id": "card.containers",
+      "group": "card",
+      "name": "containers",
+      "title": "Container stacks",
+      "svg": "svg/card/containers.svg",
+      "project": null
+    },
+    {
+      "id": "card.tooling",
+      "group": "card",
+      "name": "tooling",
+      "title": "Terminal tooling",
+      "svg": "svg/card/tooling.svg",
+      "project": null
+    },
+    {
+      "id": "header.core",
+      "group": "header",
+      "name": "core",
+      "title": "core",
+      "svg": "svg/header/core.svg",
+      "project": null
+    },
+    {
+      "id": "header.dev",
+      "group": "header",
+      "name": "dev",
+      "title": "dev",
+      "svg": "svg/header/dev.svg",
+      "project": null
+    },
+    {
+      "id": "header.security",
+      "group": "header",
+      "name": "security",
+      "title": "security",
+      "svg": "svg/header/security.svg",
+      "project": null
+    },
+    {
+      "id": "icon.symbol-128",
+      "group": "icon",
+      "name": "symbol-128",
+      "title": "Cybercore symbol",
+      "svg": "svg/icon/symbol-128.svg",
+      "project": null
+    },
+    {
+      "id": "icon.symbol-16",
+      "group": "icon",
+      "name": "symbol-16",
+      "title": "Cybercore symbol",
+      "svg": "svg/icon/symbol-16.svg",
+      "project": null
+    },
+    {
+      "id": "icon.symbol-192",
+      "group": "icon",
+      "name": "symbol-192",
+      "title": "Cybercore symbol",
+      "svg": "svg/icon/symbol-192.svg",
+      "project": null
+    },
+    {
+      "id": "icon.symbol-256",
+      "group": "icon",
+      "name": "symbol-256",
+      "title": "Cybercore symbol",
+      "svg": "svg/icon/symbol-256.svg",
+      "project": null
+    },
+    {
+      "id": "icon.symbol-32",
+      "group": "icon",
+      "name": "symbol-32",
+      "title": "Cybercore symbol",
+      "svg": "svg/icon/symbol-32.svg",
+      "project": null
+    },
+    {
+      "id": "icon.symbol-384",
+      "group": "icon",
+      "name": "symbol-384",
+      "title": "Cybercore symbol",
+      "svg": "svg/icon/symbol-384.svg",
+      "project": null
+    },
+    {
+      "id": "icon.symbol-48",
+      "group": "icon",
+      "name": "symbol-48",
+      "title": "Cybercore symbol",
+      "svg": "svg/icon/symbol-48.svg",
+      "project": null
+    },
+    {
+      "id": "icon.symbol-512",
+      "group": "icon",
+      "name": "symbol-512",
+      "title": "Cybercore symbol",
+      "svg": "svg/icon/symbol-512.svg",
+      "project": null
+    },
+    {
+      "id": "icon.symbol-64",
+      "group": "icon",
+      "name": "symbol-64",
+      "title": "Cybercore symbol",
+      "svg": "svg/icon/symbol-64.svg",
+      "project": null
+    },
+    {
+      "id": "icon.symbol-96",
+      "group": "icon",
+      "name": "symbol-96",
+      "title": "Cybercore symbol",
+      "svg": "svg/icon/symbol-96.svg",
+      "project": null
+    },
+    {
+      "id": "identity.core-reactor",
+      "group": "identity",
+      "name": "core-reactor",
+      "title": "core-reactor",
+      "svg": null,
+      "project": null
+    },
+    {
+      "id": "identity.mark",
+      "group": "identity",
+      "name": "mark",
+      "title": "mark",
+      "svg": null,
+      "project": null
+    },
+    {
+      "id": "logo.header",
+      "group": "logo",
+      "name": "header",
+      "title": "Cybercore",
+      "svg": "svg/logo/header.svg",
+      "project": null
+    },
+    {
+      "id": "logo.horizontal",
+      "group": "logo",
+      "name": "horizontal",
+      "title": "Cybercore",
+      "svg": "svg/logo/horizontal.svg",
+      "project": null
+    },
+    {
+      "id": "logo.horizontal-mono",
+      "group": "logo",
+      "name": "horizontal-mono",
+      "title": "Cybercore monochrome",
+      "svg": "svg/logo/horizontal-mono.svg",
+      "project": null
+    },
+    {
+      "id": "logo.mark",
+      "group": "logo",
+      "name": "mark",
+      "title": "mark",
+      "svg": "svg/logo/mark.svg",
+      "project": null
+    },
+    {
+      "id": "logo.stacked",
+      "group": "logo",
+      "name": "stacked",
+      "title": "Cybercore stacked logo",
+      "svg": "svg/logo/stacked.svg",
+      "project": null
+    },
+    {
+      "id": "logo.symbol",
+      "group": "logo",
+      "name": "symbol",
+      "title": "Cybercore symbol",
+      "svg": "svg/logo/symbol.svg",
+      "project": null
+    },
+    {
+      "id": "logo.wordmark",
+      "group": "logo",
+      "name": "wordmark",
+      "title": "wordmark",
+      "svg": "svg/logo/wordmark.svg",
+      "project": null
+    },
+    {
+      "id": "mark.automation",
+      "group": "mark",
+      "name": "automation",
+      "title": "automation",
+      "svg": "svg/mark/automation.svg",
+      "project": null
+    },
+    {
+      "id": "mark.core",
+      "group": "mark",
+      "name": "core",
+      "title": "core",
+      "svg": "svg/mark/core.svg",
+      "project": null
+    },
+    {
+      "id": "mark.security",
+      "group": "mark",
+      "name": "security",
+      "title": "security",
+      "svg": "svg/mark/security.svg",
+      "project": null
+    },
+    {
+      "id": "mark.terminal",
+      "group": "mark",
+      "name": "terminal",
+      "title": "terminal",
+      "svg": "svg/mark/terminal.svg",
+      "project": null
+    },
+    {
+      "id": "project.aetherscope",
+      "group": "project",
+      "name": "aetherscope",
+      "title": "aetherscope",
+      "svg": "svg/project/aetherscope.svg",
+      "project": "aetherscope"
+    },
+    {
+      "id": "project.agentforge",
+      "group": "project",
+      "name": "agentforge",
+      "title": "agentforge",
+      "svg": "svg/project/agentforge.svg",
+      "project": "agentforge"
+    },
+    {
+      "id": "project.apexdaemon",
+      "group": "project",
+      "name": "apexdaemon",
+      "title": "apexdaemon",
+      "svg": "svg/project/apexdaemon.svg",
+      "project": "apexdaemon"
+    },
+    {
+      "id": "project.argus",
+      "group": "project",
+      "name": "argus",
+      "title": "argus",
+      "svg": "svg/project/argus.svg",
+      "project": "argus"
+    },
+    {
+      "id": "project.chronicle",
+      "group": "project",
+      "name": "chronicle",
+      "title": "chronicle",
+      "svg": "svg/project/chronicle.svg",
+      "project": "chronicle"
+    },
+    {
+      "id": "project.cyberauth",
+      "group": "project",
+      "name": "cyberauth",
+      "title": "CyberAuth",
+      "svg": "svg/project/cyberauth.svg",
+      "project": "CyberAuth"
+    },
+    {
+      "id": "project.cybercore",
+      "group": "project",
+      "name": "cybercore",
+      "title": "cybercore",
+      "svg": "svg/project/cybercore.svg",
+      "project": "cybercore"
+    },
+    {
+      "id": "project.cybercore-mission-control",
+      "group": "project",
+      "name": "cybercore-mission-control",
+      "title": "cybercore-mission-control",
+      "svg": "svg/project/cybercore-mission-control.svg",
+      "project": "cybercore-mission-control"
+    },
+    {
+      "id": "project.cybercoretech-github-io",
+      "group": "project",
+      "name": "cybercoretech-github-io",
+      "title": "cybercoretech.github.io",
+      "svg": "svg/project/cybercoretech-github-io.svg",
+      "project": "cybercoretech.github.io"
+    },
+    {
+      "id": "project.cyberdeck",
+      "group": "project",
+      "name": "cyberdeck",
+      "title": "cyberdeck",
+      "svg": "svg/project/cyberdeck.svg",
+      "project": "cyberdeck"
+    },
+    {
+      "id": "project.cyberdeck-hub",
+      "group": "project",
+      "name": "cyberdeck-hub",
+      "title": "cyberdeck-hub",
+      "svg": "svg/project/cyberdeck-hub.svg",
+      "project": "cyberdeck-hub"
+    },
+    {
+      "id": "project.cyberdesk",
+      "group": "project",
+      "name": "cyberdesk",
+      "title": "cyberdesk",
+      "svg": "svg/project/cyberdesk.svg",
+      "project": "cyberdesk"
+    },
+    {
+      "id": "project.cyberfleet",
+      "group": "project",
+      "name": "cyberfleet",
+      "title": "cyberfleet",
+      "svg": "svg/project/cyberfleet.svg",
+      "project": "cyberfleet"
+    },
+    {
+      "id": "project.cybermeta",
+      "group": "project",
+      "name": "cybermeta",
+      "title": "cybermeta",
+      "svg": "svg/project/cybermeta.svg",
+      "project": "cybermeta"
+    },
+    {
+      "id": "project.cybermeta-android-app",
+      "group": "project",
+      "name": "cybermeta-android-app",
+      "title": "cybermeta-android-app",
+      "svg": "svg/project/cybermeta-android-app.svg",
+      "project": "cybermeta-android-app"
+    },
+    {
+      "id": "project.cybernote",
+      "group": "project",
+      "name": "cybernote",
+      "title": "cybernote",
+      "svg": "svg/project/cybernote.svg",
+      "project": "cybernote"
+    },
+    {
+      "id": "project.cybernote-android-app",
+      "group": "project",
+      "name": "cybernote-android-app",
+      "title": "cybernote-android-app",
+      "svg": "svg/project/cybernote-android-app.svg",
+      "project": "cybernote-android-app"
+    },
+    {
+      "id": "project.cyberplug",
+      "group": "project",
+      "name": "cyberplug",
+      "title": "cyberplug",
+      "svg": "svg/project/cyberplug.svg",
+      "project": "cyberplug"
+    },
+    {
+      "id": "project.cyberplug-bar-widget",
+      "group": "project",
+      "name": "cyberplug-bar-widget",
+      "title": "cyberplug-bar-widget",
+      "svg": "svg/project/cyberplug-bar-widget.svg",
+      "project": "cyberplug-bar-widget"
+    },
+    {
+      "id": "project.cyberterm",
+      "group": "project",
+      "name": "cyberterm",
+      "title": "cyberterm",
+      "svg": "svg/project/cyberterm.svg",
+      "project": "cyberterm"
+    },
+    {
+      "id": "project.cybervault",
+      "group": "project",
+      "name": "cybervault",
+      "title": "cybervault",
+      "svg": "svg/project/cybervault.svg",
+      "project": "cybervault"
+    },
+    {
+      "id": "project.cybervault-android-app",
+      "group": "project",
+      "name": "cybervault-android-app",
+      "title": "cybervault-android-app",
+      "svg": "svg/project/cybervault-android-app.svg",
+      "project": "cybervault-android-app"
+    },
+    {
+      "id": "project.cyberwatch",
+      "group": "project",
+      "name": "cyberwatch",
+      "title": "cyberwatch",
+      "svg": "svg/project/cyberwatch.svg",
+      "project": "cyberwatch"
+    },
+    {
+      "id": "project.cyberwindiagnostics",
+      "group": "project",
+      "name": "cyberwindiagnostics",
+      "title": "CyberWinDiagnostics",
+      "svg": "svg/project/cyberwindiagnostics.svg",
+      "project": "CyberWinDiagnostics"
+    },
+    {
+      "id": "project.daemonhall",
+      "group": "project",
+      "name": "daemonhall",
+      "title": "DaemonHall",
+      "svg": "svg/project/daemonhall.svg",
+      "project": "DaemonHall"
+    },
+    {
+      "id": "project.darkwavecode",
+      "group": "project",
+      "name": "darkwavecode",
+      "title": "DarkwaveCode",
+      "svg": "svg/project/darkwavecode.svg",
+      "project": "DarkwaveCode"
+    },
+    {
+      "id": "project.diagprint",
+      "group": "project",
+      "name": "diagprint",
+      "title": "diagprint",
+      "svg": "svg/project/diagprint.svg",
+      "project": "diagprint"
+    },
+    {
+      "id": "project.dockspace",
+      "group": "project",
+      "name": "dockspace",
+      "title": "dockspace",
+      "svg": "svg/project/dockspace.svg",
+      "project": "dockspace"
+    },
+    {
+      "id": "project.fdroid",
+      "group": "project",
+      "name": "fdroid",
+      "title": "fdroid",
+      "svg": "svg/project/fdroid.svg",
+      "project": "fdroid"
+    },
+    {
+      "id": "project.ferraxis",
+      "group": "project",
+      "name": "ferraxis",
+      "title": "ferraxis",
+      "svg": "svg/project/ferraxis.svg",
+      "project": "ferraxis"
+    },
+    {
+      "id": "project.gateflow",
+      "group": "project",
+      "name": "gateflow",
+      "title": "gateflow",
+      "svg": "svg/project/gateflow.svg",
+      "project": "gateflow"
+    },
+    {
+      "id": "project.ghostframe",
+      "group": "project",
+      "name": "ghostframe",
+      "title": "ghostframe",
+      "svg": "svg/project/ghostframe.svg",
+      "project": "ghostframe"
+    },
+    {
+      "id": "project.ghostport",
+      "group": "project",
+      "name": "ghostport",
+      "title": "ghostport",
+      "svg": "svg/project/ghostport.svg",
+      "project": "ghostport"
+    },
+    {
+      "id": "project.github",
+      "group": "project",
+      "name": "github",
+      "title": ".github",
+      "svg": "svg/project/github.svg",
+      "project": ".github"
+    },
+    {
+      "id": "project.hermes",
+      "group": "project",
+      "name": "hermes",
+      "title": "hermes",
+      "svg": "svg/project/hermes.svg",
+      "project": "hermes"
+    },
+    {
+      "id": "project.holodrive",
+      "group": "project",
+      "name": "holodrive",
+      "title": "holodrive",
+      "svg": "svg/project/holodrive.svg",
+      "project": "holodrive"
+    },
+    {
+      "id": "project.holodrive-android-app",
+      "group": "project",
+      "name": "holodrive-android-app",
+      "title": "holodrive-android-app",
+      "svg": "svg/project/holodrive-android-app.svg",
+      "project": "holodrive-android-app"
+    },
+    {
+      "id": "project.keysmith",
+      "group": "project",
+      "name": "keysmith",
+      "title": "keysmith",
+      "svg": "svg/project/keysmith.svg",
+      "project": "keysmith"
+    },
+    {
+      "id": "project.neoncoffinvideo",
+      "group": "project",
+      "name": "neoncoffinvideo",
+      "title": "NeonCoffinVideo",
+      "svg": "svg/project/neoncoffinvideo.svg",
+      "project": "NeonCoffinVideo"
+    },
+    {
+      "id": "project.nightwatch-android-app",
+      "group": "project",
+      "name": "nightwatch-android-app",
+      "title": "nightwatch-android-app",
+      "svg": "svg/project/nightwatch-android-app.svg",
+      "project": "nightwatch-android-app"
+    },
+    {
+      "id": "project.nightwatchd",
+      "group": "project",
+      "name": "nightwatchd",
+      "title": "nightwatchd",
+      "svg": "svg/project/nightwatchd.svg",
+      "project": "nightwatchd"
+    },
+    {
+      "id": "project.omniscient",
+      "group": "project",
+      "name": "omniscient",
+      "title": "omniscient",
+      "svg": "svg/project/omniscient.svg",
+      "project": "omniscient"
+    },
+    {
+      "id": "project.sentrygrid",
+      "group": "project",
+      "name": "sentrygrid",
+      "title": "sentrygrid",
+      "svg": "svg/project/sentrygrid.svg",
+      "project": "sentrygrid"
+    },
+    {
+      "id": "project.sigilward",
+      "group": "project",
+      "name": "sigilward",
+      "title": "sigilward",
+      "svg": "svg/project/sigilward.svg",
+      "project": "sigilward"
+    },
+    {
+      "id": "project.signalwarden",
+      "group": "project",
+      "name": "signalwarden",
+      "title": "signalwarden",
+      "svg": "svg/project/signalwarden.svg",
+      "project": "signalwarden"
+    },
+    {
+      "id": "project.undertow",
+      "group": "project",
+      "name": "undertow",
+      "title": "undertow",
+      "svg": "svg/project/undertow.svg",
+      "project": "undertow"
+    },
+    {
+      "id": "project.vdb-rs",
+      "group": "project",
+      "name": "vdb-rs",
+      "title": "vdb-rs",
+      "svg": "svg/project/vdb-rs.svg",
+      "project": "vdb-rs"
+    },
+    {
+      "id": "project.vexlang",
+      "group": "project",
+      "name": "vexlang",
+      "title": "vexlang",
+      "svg": "svg/project/vexlang.svg",
+      "project": "vexlang"
+    },
+    {
+      "id": "project.vortexwall",
+      "group": "project",
+      "name": "vortexwall",
+      "title": "vortexwall",
+      "svg": "svg/project/vortexwall.svg",
+      "project": "vortexwall"
+    },
+    {
+      "id": "project.workratereport",
+      "group": "project",
+      "name": "workratereport",
+      "title": "workratereport",
+      "svg": "svg/project/workratereport.svg",
+      "project": "workratereport"
+    },
+    {
+      "id": "project.wraithflow",
+      "group": "project",
+      "name": "wraithflow",
+      "title": "wraithflow",
+      "svg": "svg/project/wraithflow.svg",
+      "project": "wraithflow"
+    },
+    {
+      "id": "site.cybercore-favicon",
+      "group": "site",
+      "name": "cybercore-favicon",
+      "title": "cybercore-favicon",
+      "svg": "svg/site/cybercore-favicon.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-hero",
+      "group": "site",
+      "name": "cybercore-hero",
+      "title": "cybercore-hero",
+      "svg": "svg/site/cybercore-hero.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-icon",
+      "group": "site",
+      "name": "cybercore-icon",
+      "title": "cybercore-icon",
+      "svg": "svg/site/cybercore-icon.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-icon-128",
+      "group": "site",
+      "name": "cybercore-icon-128",
+      "title": "Cybercore icon 128px",
+      "svg": "svg/site/cybercore-icon-128.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-icon-16",
+      "group": "site",
+      "name": "cybercore-icon-16",
+      "title": "Cybercore icon 16px",
+      "svg": "svg/site/cybercore-icon-16.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-icon-192",
+      "group": "site",
+      "name": "cybercore-icon-192",
+      "title": "Cybercore icon 192px",
+      "svg": "svg/site/cybercore-icon-192.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-icon-256",
+      "group": "site",
+      "name": "cybercore-icon-256",
+      "title": "Cybercore icon 256px",
+      "svg": "svg/site/cybercore-icon-256.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-icon-32",
+      "group": "site",
+      "name": "cybercore-icon-32",
+      "title": "Cybercore icon 32px",
+      "svg": "svg/site/cybercore-icon-32.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-icon-384",
+      "group": "site",
+      "name": "cybercore-icon-384",
+      "title": "Cybercore icon 384px",
+      "svg": "svg/site/cybercore-icon-384.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-icon-48",
+      "group": "site",
+      "name": "cybercore-icon-48",
+      "title": "Cybercore icon 48px",
+      "svg": "svg/site/cybercore-icon-48.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-icon-512",
+      "group": "site",
+      "name": "cybercore-icon-512",
+      "title": "Cybercore icon 512px",
+      "svg": "svg/site/cybercore-icon-512.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-icon-64",
+      "group": "site",
+      "name": "cybercore-icon-64",
+      "title": "Cybercore icon 64px",
+      "svg": "svg/site/cybercore-icon-64.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-icon-96",
+      "group": "site",
+      "name": "cybercore-icon-96",
+      "title": "Cybercore icon 96px",
+      "svg": "svg/site/cybercore-icon-96.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-site-divider",
+      "group": "site",
+      "name": "cybercore-site-divider",
+      "title": "cybercore-site-divider",
+      "svg": "svg/site/cybercore-site-divider.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-social-card",
+      "group": "site",
+      "name": "cybercore-social-card",
+      "title": "cybercore-social-card",
+      "svg": "svg/site/cybercore-social-card.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-wordmark",
+      "group": "site",
+      "name": "cybercore-wordmark",
+      "title": "Cybercore",
+      "svg": "svg/site/cybercore-wordmark.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-wordmark-compact",
+      "group": "site",
+      "name": "cybercore-wordmark-compact",
+      "title": "Cybercore",
+      "svg": "svg/site/cybercore-wordmark-compact.svg",
+      "project": null
+    },
+    {
+      "id": "site.cybercore-wordmark-mono",
+      "group": "site",
+      "name": "cybercore-wordmark-mono",
+      "title": "Cybercore",
+      "svg": "svg/site/cybercore-wordmark-mono.svg",
+      "project": null
+    },
+    {
+      "id": "site.header-neon",
+      "group": "site",
+      "name": "header-neon",
+      "title": "Cybercore — schema, palette, tokens, paths. 73 themes, one source of truth.",
+      "svg": "svg/site/header-neon.svg",
+      "project": null
+    },
+    {
+      "id": "site.header-stacked",
+      "group": "site",
+      "name": "header-stacked",
+      "title": "Cybercore",
+      "svg": "svg/site/header-stacked.svg",
+      "project": null
+    },
+    {
+      "id": "site.logo-schema-seal",
+      "group": "site",
+      "name": "logo-schema-seal",
+      "title": "Cybercore — Schema Seal",
+      "svg": "svg/site/logo-schema-seal.svg",
+      "project": null
+    },
+    {
+      "id": "tile.apexdaemon",
+      "group": "tile",
+      "name": "apexdaemon",
+      "title": "apexdaemon",
+      "svg": "svg/tile/apexdaemon.svg",
+      "project": null
+    },
+    {
+      "id": "tile.cybercore",
+      "group": "tile",
+      "name": "cybercore",
+      "title": "cybercore",
+      "svg": "svg/tile/cybercore.svg",
+      "project": null
+    },
+    {
+      "id": "tile.cyberdeck",
+      "group": "tile",
+      "name": "cyberdeck",
+      "title": "cyberdeck",
+      "svg": "svg/tile/cyberdeck.svg",
+      "project": null
+    },
+    {
+      "id": "tile.cybermeta",
+      "group": "tile",
+      "name": "cybermeta",
+      "title": "cybermeta",
+      "svg": "svg/tile/cybermeta.svg",
+      "project": null
+    },
+    {
+      "id": "tile.cyberplug",
+      "group": "tile",
+      "name": "cyberplug",
+      "title": "cyberplug",
+      "svg": "svg/tile/cyberplug.svg",
+      "project": null
+    },
+    {
+      "id": "tile.cyberterm",
+      "group": "tile",
+      "name": "cyberterm",
+      "title": "cyberterm",
+      "svg": "svg/tile/cyberterm.svg",
+      "project": null
+    },
+    {
+      "id": "tile.cybervault",
+      "group": "tile",
+      "name": "cybervault",
+      "title": "cybervault",
+      "svg": "svg/tile/cybervault.svg",
+      "project": null
+    },
+    {
+      "id": "tile.diagprint",
+      "group": "tile",
+      "name": "diagprint",
+      "title": "diagprint",
+      "svg": "svg/tile/diagprint.svg",
+      "project": null
+    },
+    {
+      "id": "tile.gateflow",
+      "group": "tile",
+      "name": "gateflow",
+      "title": "gateflow",
+      "svg": "svg/tile/gateflow.svg",
+      "project": null
+    },
+    {
+      "id": "tile.ghostport",
+      "group": "tile",
+      "name": "ghostport",
+      "title": "ghostport",
+      "svg": "svg/tile/ghostport.svg",
+      "project": null
+    },
+    {
+      "id": "tile.vortexwall",
+      "group": "tile",
+      "name": "vortexwall",
+      "title": "vortexwall",
+      "svg": "svg/tile/vortexwall.svg",
+      "project": null
+    },
+    {
+      "id": "tile.wraithflow",
+      "group": "tile",
+      "name": "wraithflow",
+      "title": "wraithflow",
+      "svg": "svg/tile/wraithflow.svg",
+      "project": null
+    }
+  ]
+}

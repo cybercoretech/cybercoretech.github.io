@@ -1,0 +1,17 @@
+<svg data-cc-asset="site-logo-schema-seal" xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="site-logo-schema-seal-t site-logo-schema-seal-d">
+<title id="site-logo-schema-seal-t">Cybercore — Schema Seal</title><desc id="site-logo-schema-seal-d">A hexagonal seal with a segmented CYBERGRID border ring around a core glyph</desc>
+<defs>
+<filter id="site-logo-schema-seal-glowD" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+<filter id="site-logo-schema-seal-glowDsoft" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="16" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<rect width="256" height="256" rx="36" style="fill:var(--cc-brand-bg, #0E091D)"/>
+<rect x="20" y="20" width="216" height="216" rx="28" opacity="0.08" filter="url(#site-logo-schema-seal-glowDsoft)" style="fill:var(--cc-brand-cyan, #12E5DE)"/>
+<rect x="20" y="20" width="216" height="216" rx="28" stroke-width="3" style="fill:var(--cc-brand-panel, #140D29);stroke:var(--cc-brand-line, #2A1E48)"/>
+<path d="M128.0 38.0 A90 90 0 0 1 205.2 81.7" stroke-width="7" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-cyan, #12E5DE)"/>
+<path d="M213.6 100.2 A90 90 0 0 1 195.9 187.1" stroke-width="7" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-acid-green, #B6FF3C)"/>
+<path d="M180.9 200.8 A90 90 0 0 1 92.8 210.8" stroke-width="7" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-orange, #FF6A1A)"/>
+<path d="M75.1 200.8 A90 90 0 0 1 38.3 120.1" stroke-width="7" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-red, #FF2158)"/>
+<path d="M42.4 100.2 A90 90 0 0 1 107.8 40.3" stroke-width="7" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-purple, #B44DFF)"/>
+<path d="M180.0 158.0 L128.0 188.0 L76.0 158.0 L76.0 98.0 L128.0 68.0 L180.0 98.0 Z" stroke-width="3" filter="url(#site-logo-schema-seal-glowD)" style="fill:var(--cc-brand-panel, #1B1236);stroke:var(--cc-brand-white, #F5F3FF)"/>
+<path d="M147.7 141.8 A24 24 0 1 1 147.7 114.2" stroke-width="10" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-white, #F5F3FF)"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg data-cc-asset="project-ghostframe" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="9" style="fill:var(--cc-brand-bg, #080a0d)"/>
+  <path d="M23 34 64 13l41 21v60l-41 21-41-21z" stroke-width="3" style="fill:var(--cc-brand-bg, #0e1217);stroke:var(--cc-brand-cyan, #27e8ef)"/>
+  <path d="m32 42 32-16 32 16v44l-32 16-32-16z" stroke-width="2" style="fill:var(--cc-brand-bg, #151b22);stroke:var(--cc-brand-hot-pink, #ff2c9c)"/>
+  <circle cx="64" cy="64" r="22" stroke="#b8ff3b" stroke-width="4" style="fill:var(--cc-brand-bg, #080a0d)"/>
+  <circle cx="64" cy="64" r="9" style="fill:var(--cc-brand-cyan, #27e8ef)"/>
+  <path d="M15 64h24M89 64h24M64 8v22M64 98v22" stroke="#b8ff3b" stroke-width="3"/>
+</svg>

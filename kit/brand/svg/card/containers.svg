@@ -1,0 +1,8 @@
+<svg data-cc-asset="card-containers" xmlns="http://www.w3.org/2000/svg" width="496" height="260" viewBox="0 0 496 260" role="img" aria-labelledby="card-containers-title">
+  <title id="card-containers-title">Container stacks</title>
+  <rect width="496" height="260" rx="22" stroke-width="4" style="fill:var(--cc-brand-bg, #101116);stroke:var(--cc-brand-line, #343744)"/>
+  <text x="30" y="58" font-family="Arial, sans-serif" font-size="30" font-weight="700" style="fill:var(--cc-brand-orange, #ff7f41)">CONTAINERS</text>
+  <text x="30" y="100" font-family="Arial, sans-serif" font-size="21" style="fill:var(--cc-brand-white, #d7dbe7)">services + development stacks</text>
+  <text x="30" y="132" font-family="Arial, sans-serif" font-size="18" style="fill:var(--cc-brand-muted, #8e95a7)">organized, documented, repeatable</text>
+  <rect x="30" y="174" width="112" height="8" rx="4" style="fill:var(--cc-brand-orange, #ff7f41)"/><rect x="154" y="174" width="78" height="8" rx="4" fill="#9147a8"/>
+</svg>

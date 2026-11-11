@@ -1,0 +1,8 @@
+<svg data-cc-asset="card-tooling" xmlns="http://www.w3.org/2000/svg" width="496" height="260" viewBox="0 0 496 260" role="img" aria-labelledby="card-tooling-title">
+  <title id="card-tooling-title">Terminal tooling</title>
+  <rect width="496" height="260" rx="22" stroke-width="4" style="fill:var(--cc-brand-bg, #101116);stroke:var(--cc-brand-line, #343744)"/>
+  <text x="30" y="58" fill="#c8e967" font-family="Arial, sans-serif" font-size="30" font-weight="700">TOOLING</text>
+  <text x="30" y="100" font-family="monospace" font-size="20" style="fill:var(--cc-brand-white, #d7dbe7)">yazi   lazygit   starship</text>
+  <text x="30" y="132" font-family="Arial, sans-serif" font-size="18" style="fill:var(--cc-brand-muted, #8e95a7)">fast navigation, clear context</text>
+  <rect x="30" y="174" width="112" height="8" rx="4" fill="#c8e967"/><rect x="154" y="174" width="78" height="8" rx="4" fill="#14b9b5"/>
+</svg>
