@@ -1,0 +1,11 @@
+<svg data-cc-asset="site-cybercore-icon-32" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" role="img" aria-labelledby="site-cybercore-icon-32-t">
+<title id="site-cybercore-icon-32-t">Cybercore icon 32px</title>
+<rect width="32.00" height="32.00" rx="7.00" style="fill:var(--cc-brand-bg, #0E091D)"/>
+<path d="M 16.00 5.59 A 10.41 10.41 0 0 1 24.92 10.64" stroke-width="2.11" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-cyan, #12E5DE)"/>
+<path d="M 25.90 12.78 A 10.41 10.41 0 0 1 23.85 22.83" stroke-width="2.11" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-acid-green, #B6FF3C)"/>
+<path d="M 22.12 24.42 A 10.41 10.41 0 0 1 11.93 25.58" stroke-width="2.11" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-orange, #FF6A1A)"/>
+<path d="M 9.88 24.42 A 10.41 10.41 0 0 1 5.63 15.09" stroke-width="2.11" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-red, #FF2158)"/>
+<path d="M 6.10 12.78 A 10.41 10.41 0 0 1 13.66 5.86" stroke-width="2.11" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-purple, #B44DFF)"/>
+<path d="M 19.47 9.99 L 22.94 16.00 L 19.47 22.01 L 12.53 22.01 L 9.06 16.00 L 12.53 9.99 Z" stroke-width="1.30" style="fill:var(--cc-brand-panel, #1B1236);stroke:var(--cc-brand-white, #F5F3FF)"/>
+<path d="M 18.28 17.59 A 2.78 2.78 0 1 1 18.28 14.41" stroke-width="3.00" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-white, #F5F3FF)"/>
+</svg>

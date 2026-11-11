@@ -1,0 +1,11 @@
+<svg data-cc-asset="site-cybercore-icon-512" xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="site-cybercore-icon-512-t">
+<title id="site-cybercore-icon-512-t">Cybercore icon 512px</title>
+<rect width="512.00" height="512.00" rx="112.00" style="fill:var(--cc-brand-bg, #0E091D)"/>
+<path d="M 256.00 89.50 A 166.50 166.50 0 0 1 398.72 170.25" stroke-width="12.99" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-cyan, #12E5DE)"/>
+<path d="M 414.35 204.55 A 166.50 166.50 0 0 1 381.66 365.23" stroke-width="12.99" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-acid-green, #B6FF3C)"/>
+<path d="M 353.87 390.70 A 166.50 166.50 0 0 1 190.94 409.26" stroke-width="12.99" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-orange, #FF6A1A)"/>
+<path d="M 158.13 390.70 A 166.50 166.50 0 0 1 90.13 241.49" stroke-width="12.99" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-red, #FF2158)"/>
+<path d="M 97.65 204.55 A 166.50 166.50 0 0 1 218.55 93.77" stroke-width="12.99" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-purple, #B44DFF)"/>
+<path d="M 311.53 159.82 L 367.06 256.00 L 311.53 352.18 L 200.47 352.18 L 144.94 256.00 L 200.47 159.82 Z" stroke-width="5.49" style="fill:var(--cc-brand-panel, #1B1236);stroke:var(--cc-brand-white, #F5F3FF)"/>
+<path d="M 292.42 281.50 A 44.46 44.46 0 1 1 292.42 230.50" stroke-width="18.48" fill="none" stroke-linecap="round" style="stroke:var(--cc-brand-white, #F5F3FF)"/>
+</svg>

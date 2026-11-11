@@ -1,0 +1,12 @@
+<svg data-cc-asset="project-darkwavecode" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <filter id="project-darkwavecode-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="3" y="3" width="58" height="58" rx="8" stroke-width="2" style="fill:var(--cc-brand-bg, #080910);stroke:var(--cc-brand-cyan, #21e6ff)"/>
+  <path d="M8 13h48M8 51h48" stroke-width="1" style="stroke:var(--cc-brand-line, #26313d)"/>
+  <text x="8" y="42" font-family="Arial,sans-serif" font-size="27" font-weight="800" letter-spacing="-2" style="fill:var(--cc-brand-white, #eaf5ff)">DW</text>
+  <path d="M43 47h10" stroke-width="4" stroke-linecap="square" filter="url(#project-darkwavecode-glow)" style="stroke:var(--cc-brand-hot-pink, #ff2f9f)"/>
+</svg>
